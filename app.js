@@ -50,12 +50,13 @@
     },
     {
       story:'Ja hi arribes! Ara subjectes el pot i l’acostes cap a tu.',
-      question:'Quins músculs principals agafen el pot i dobleguen el colze?',
+      question:'Quins músculs tanquen els dits i dobleguen el colze?',
       options:[['forearm','Mà i avantbraç'],['biceps','Bíceps'],['deltoid','Deltoide'],['triceps','Tríceps'],['quadriceps','Quàdriceps'],['calves','Bessons']],
       correct:['forearm','biceps'],
       explanation:'Els músculs de la mà i l’avantbraç tanquen els dits per subjectar el pot. El bíceps ajuda a doblegar el colze i acostar-lo. Altres músculs continuen estabilitzant el moviment.'
     }
   ];
+  const muscleShapes = {deltoid:'muscle-deltoid', trapezius:'muscle-trapezius', serratus:'muscle-serratus', triceps:'muscle-triceps', biceps:'muscle-biceps', forearm:'muscle-forearm'};
 
   const brainParts = [
     {id:'amygdala', name:'Amígdala', icon:'⚡', answer:'alert', note:'Ajuda a detectar que alguna cosa pot ser important i cal parar-hi atenció.'},
@@ -104,6 +105,12 @@
     el.innerHTML = html;
     el.classList.toggle('is-success', type === 'success');
     el.classList.toggle('is-error', type === 'error');
+    if (selector === '#clueFeedback') {
+      const mobile = $('#mobileClueFeedback');
+      mobile.innerHTML = html;
+      mobile.classList.toggle('is-success', type === 'success');
+      mobile.classList.toggle('is-error', type === 'error');
+    }
   }
 
   function setView(next) {
@@ -125,6 +132,7 @@
 
   function setMode(next) {
     mode = next;
+    document.body.dataset.mode = next;
     document.querySelectorAll('.nav-button').forEach(button => {
       const active = button.dataset.mode === next;
       button.classList.toggle('is-active', active);
@@ -197,6 +205,7 @@
       if (correct) {
         clueSolved = true;
         $('#extraHintButton').disabled = true;
+        $('#mobileExtraHintButton').disabled = true;
         sessionScore += 1;
         $('#scorePill').textContent = `${sessionScore} ${sessionScore === 1 ? 'descoberta' : 'descobertes'}`;
         renderProgress();
@@ -205,7 +214,7 @@
         setFeedback('#clueFeedback', `<strong>Molt bé! ${capitalize(zone.label)}.</strong><p>${zone.fact}</p>`, 'success');
       } else {
         setSpeech('Prova un altre lloc!');
-        setFeedback('#clueFeedback', `<strong>Encara no!</strong> Has tocat ${zone.label}. <span class="little-hint">${zone.fact}</span>`, 'error');
+        setFeedback('#clueFeedback', `<strong>Encara no!</strong> Has tocat una altra zona: ${zone.label}. <span class="little-hint">${zone.fact}</span>`, 'error');
       }
     } else if (mode === 'layers') {
       const custom = customLayers.find(item => item.id === selectedLayer);
@@ -247,7 +256,9 @@
     currentClue = clues[clueDeck.shift()];
     clueSolved = false;
     $('#clueText').textContent = currentClue.text;
+    $('#mobileClueText').textContent = currentClue.text;
     $('#extraHintButton').disabled = false;
+    $('#mobileExtraHintButton').disabled = false;
     setFeedback('#clueFeedback', 'Toca una zona del personatge. Si cal, gira’l per mirar-lo per darrere.');
     setSpeech('On és? 🤔');
   }
@@ -256,12 +267,20 @@
     if (clueSolved) return;
     setFeedback('#clueFeedback', `<strong>Una altra pista:</strong> ${currentClue.hint}`);
     $('#extraHintButton').disabled = true;
+    $('#mobileExtraHintButton').disabled = true;
+  }
+
+  function showSelectedMuscles(ids) {
+    document.querySelectorAll('.muscle-shape').forEach(shape => shape.classList.remove('is-answer'));
+    ids.forEach(id => {
+      if (muscleShapes[id]) document.querySelectorAll(`.${muscleShapes[id]}`).forEach(shape => shape.classList.add('is-answer'));
+    });
+    $('#bodyStage').classList.toggle('show-muscle-answer', ids.length > 0);
   }
 
   function renderMuscleStep() {
     const step = muscleSteps[muscleStep];
-    $('#bodyStage').classList.remove('show-muscle-answer');
-    document.querySelectorAll('.muscle-shape').forEach(shape => shape.classList.remove('is-answer'));
+    showSelectedMuscles([]);
     $('#muscleStory').textContent = step.story;
     $('#muscleQuestion').textContent = step.question;
     document.querySelectorAll('.step-button').forEach(button => button.classList.toggle('is-active', Number(button.dataset.step) === muscleStep));
@@ -274,6 +293,10 @@
       input.type = 'checkbox';
       input.value = id;
       input.name = 'muscle-choice';
+      input.addEventListener('change', () => {
+        const selected = [...document.querySelectorAll('#muscleChoices input:checked')].map(item => item.value);
+        showSelectedMuscles(selected);
+      });
       const text = document.createElement('span');
       text.textContent = label;
       wrapper.append(input, text);
@@ -293,11 +316,8 @@
       else if (input.checked) wrapper.classList.add('is-wrong');
     });
     const exact = chosen.length === step.correct.length && chosen.every(id => step.correct.includes(id));
-    const shapeClasses = {deltoid:'muscle-deltoid', trapezius:'muscle-trapezius', serratus:'muscle-serratus', triceps:'muscle-triceps', biceps:'muscle-biceps', forearm:'muscle-forearm'};
-    document.querySelectorAll('.muscle-shape').forEach(shape => shape.classList.remove('is-answer'));
-    step.correct.forEach(id => document.querySelectorAll(`.${shapeClasses[id]}`).forEach(shape => shape.classList.add('is-answer')));
-    $('#bodyStage').classList.add('show-muscle-answer');
-    const message = exact ? '<strong>Equip complet! 🎉</strong>' : '<strong>Repassem l’equip:</strong> verd = encert, groc = faltava, vermell = aquest no és principal en aquest pas.';
+    showSelectedMuscles(step.correct);
+    const message = exact ? '<strong>Equip complet! 🎉</strong>' : '<strong>Repassem l’equip:</strong> verd = encert, groc = faltava, vermell = no fa el gest preguntat.';
     const turnTip = muscleStep === 0 ? ' Gira el personatge per veure el trapezi i el tríceps a l’esquena del braç.' : '';
     setFeedback('#muscleFeedback', `${message}<p>${step.explanation}${turnTip}</p>`, exact ? 'success' : 'error');
     setSpeech(muscleStep === 0 ? 'Gira’m! ↺' : 'Ben jugat! 💪');
@@ -308,6 +328,7 @@
     $('#bpmValue').textContent = String(bpm);
     $('.heart-control').style.setProperty('--beat-duration', `${(60 / bpm).toFixed(3)}s`);
     $('#bodyStage').style.setProperty('--flow-duration', `${(110 / bpm).toFixed(3)}s`);
+    document.querySelectorAll('.flow-particle').forEach(particle => particle.setAttribute('dur', `${(120 / bpm).toFixed(3)}s`));
     $('#bpmFact').textContent = bpm < 85
       ? 'Ara els batecs de la simulació van més pausats. El cor continua impulsant la sang pel mateix circuit.'
       : bpm < 120
@@ -548,9 +569,11 @@
     try {
       const raw = JSON.parse(await file.text());
       if (raw.app !== 'AULAIA Cos en joc' || raw.version !== 1 || !Array.isArray(raw.layers)) throw new Error('format');
-      const imported = validateLayers(raw.layers);
+      const available = 20 - customLayers.length;
+      if (available <= 0) { window.alert('Ja tens 20 capes. Descarrega-les o esborra’n una abans d’importar-ne més.'); return; }
+      const imported = validateLayers(raw.layers).slice(0, available);
       if (imported.length === 0) throw new Error('empty');
-      customLayers = [...customLayers, ...imported].slice(0,20);
+      customLayers = [...customLayers, ...imported];
       selectedLayer = imported[0].id;
       saveLayers(); setStageLayer('custom'); renderLayerList(); renderLayerDetail();
       setSpeech('Capes importades! ✳');
@@ -581,7 +604,9 @@
   document.querySelectorAll('.nav-button').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
   $('#turnButton').addEventListener('click', () => setView(view === 'front' ? 'back' : 'front'));
   $('#extraHintButton').addEventListener('click', showExtraHint);
+  $('#mobileExtraHintButton').addEventListener('click', showExtraHint);
   $('#nextClueButton').addEventListener('click', nextClue);
+  $('#mobileNextClueButton').addEventListener('click', nextClue);
   document.querySelectorAll('.step-button').forEach(button => button.addEventListener('click', () => { muscleStep = Number(button.dataset.step); renderMuscleStep(); }));
   $('#checkMusclesButton').addEventListener('click', checkMuscles);
   $('#bpmSlider').addEventListener('input', updateBpm);

@@ -1,4 +1,4 @@
-const CACHE = 'aulaia-cos-en-joc-v1';
+const CACHE = 'aulaia-cos-en-joc-v2';
 const ASSETS = [
   './',
   './index.html',

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./styles.css">
   <title>Cos en joc · AULAIA</title>
 </head>
-<body>
+<body data-mode="tickle">
   <a class="skip-link" href="#main">Salta al contingut</a>
   <header class="site-header">
     <div class="brand" aria-label="AULAIA, Cos en joc">
@@ -42,6 +42,7 @@
       <section class="figure-card" aria-labelledby="figureTitle">
         <div class="card-topline"><span class="mini-label">EL NOSTRE PERSONATGE</span><span id="layerBadge" class="layer-badge">Parts del cos</span></div>
         <div class="figure-title-row"><h2 id="figureTitle">Coneix en Niu</h2><span class="figure-speech" id="figureSpeech" aria-live="polite">Hola! 👋</span></div>
+        <div class="mobile-prompt" id="mobilePrompt"><div class="mobile-prompt-head"><span>PISTA PER TOCAR</span><button id="mobileExtraHintButton" type="button">＋ pista</button></div><p id="mobileClueText"></p><div id="mobileClueFeedback" class="mobile-feedback" role="status" aria-live="polite"></div><button id="mobileNextClueButton" class="mobile-next" type="button">Una altra descoberta →</button></div>
         <div class="body-stage" id="bodyStage" data-layer="body" data-view="front">
           <div class="stage-orbit orbit-one" aria-hidden="true"></div>
           <div class="stage-orbit orbit-two" aria-hidden="true"></div>
@@ -86,10 +87,11 @@
                 <path class="muscle-shape muscle-quads" d="M177 342 L207 344 L202 471 L181 471 Z M213 344 L242 342 L238 471 L217 471 Z"/>
               </g>
               <g class="circulation-overlay" aria-hidden="true">
-                <path class="vessel vessel-red" d="M218 202 C227 169 230 150 232 127 M218 202 C248 204 275 217 291 271 L309 344 M218 202 C205 240 197 299 193 343 L191 530 M218 202 C228 243 231 301 230 345 L229 530"/>
-                <path class="vessel vessel-blue" d="M204 202 C193 175 191 149 188 127 M204 202 C171 201 145 216 126 270 L108 343 M204 202 C195 245 189 302 184 344 L184 530 M204 202 C214 247 221 302 224 346 L224 530"/>
+                <path class="vessel vessel-red" d="M218 202 C227 169 230 150 232 127 M218 202 C248 204 275 217 291 271 L309 344 M218 202 C205 240 197 299 193 343 L191 530 M218 202 C228 243 231 301 230 345 L229 530 M212 204 C180 205 148 224 126 270 L110 342 M209 213 C211 282 218 384 219 522"/>
+                <path class="vessel vessel-blue" d="M204 202 C193 175 191 149 188 127 M204 202 C171 201 145 216 126 270 L108 343 M204 202 C195 245 189 302 184 344 L184 530 M204 202 C214 247 221 302 224 346 L224 530 M209 205 C239 206 274 225 292 270 L310 341 M210 215 C207 285 201 387 198 525"/>
                 <path d="M191 189 Q182 169 190 157 Q201 148 207 165 L208 192Z M226 190 Q237 171 229 157 Q218 149 213 165 L212 192Z" fill="#d4f0ee" stroke="#53b6b5" stroke-width="2"/>
                 <path d="M210 199 C194 178 183 202 210 223 C237 202 226 178 210 199Z" fill="#ea6a65" stroke="#af494b" stroke-width="2"/>
+                <g class="blood-motion"><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M184 530 C188 420 190 300 204 204"/></circle><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M205 204 C181 194 177 168 192 158"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M226 159 C240 176 228 198 216 203"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M216 203 C225 304 230 429 230 530"/></circle></g>
               </g>
               <g class="brain-overlay" aria-hidden="true"><path d="M177 61 Q172 41 191 38 Q201 30 211 36 Q225 31 235 44 Q248 48 244 64 Q252 78 236 87 Q230 100 214 94 Q201 101 188 91 Q172 88 176 73 Z" fill="#ed8e9e" stroke="#ae5c70" stroke-width="2"/><path d="M210 37 Q207 53 212 65 Q207 79 214 93 M185 56 Q198 53 198 68 M228 50 Q221 62 232 73" fill="none" stroke="#ae5c70" stroke-width="2" stroke-linecap="round"/></g>
             </g>
@@ -109,7 +111,7 @@
               <path d="M163 76 Q152 31 184 18 Q213 1 241 23 Q264 32 257 76 Q254 111 232 125 Q210 134 188 124 Q166 111 163 76Z" fill="#293b57"/><path d="M181 42 Q194 63 210 59 Q231 63 243 44" fill="none" stroke="#45617e" stroke-width="4"/>
               <g class="clothes"><path d="M160 150 Q178 141 188 143 L232 143 Q252 141 260 151 L270 182 L252 190 L249 267 Q210 279 170 267 L167 190 L150 182 Z" fill="url(#shirt)" stroke="#2f9997" stroke-width="2"/><path d="M170 267 Q211 278 250 267 L252 337 Q232 346 211 339 L209 313 L207 339 Q185 347 168 337 Z" fill="url(#shorts)" stroke="#1d4f75" stroke-width="2"/><path d="M208 173 L208 243" fill="none" stroke="#bcece0" stroke-width="3" stroke-linecap="round"/></g>
               <g class="muscle-overlay" aria-hidden="true"><path class="muscle-shape muscle-trapezius" d="M185 139 Q208 165 235 139 L251 181 L212 211 L168 181Z"/><path class="muscle-shape muscle-triceps" d="M140 195 L154 211 L133 266 L118 259Z M280 195 L266 211 L287 266 L302 259Z"/><path class="muscle-shape muscle-glutes" d="M169 286 Q187 274 208 290 L207 340 Q185 348 168 333Z M212 290 Q233 274 251 286 L252 333 Q234 348 213 340Z"/><path class="muscle-shape muscle-calves" d="M179 477 L203 477 L201 539 L178 539Z M217 477 L240 477 L242 539 L219 539Z"/></g>
-              <g class="circulation-overlay" aria-hidden="true"><path class="vessel vessel-red" d="M218 202 C227 169 230 150 232 127 M218 202 C248 204 275 217 291 271 L309 344 M218 202 C205 240 197 299 193 343 L191 530 M218 202 C228 243 231 301 230 345 L229 530"/><path class="vessel vessel-blue" d="M204 202 C193 175 191 149 188 127 M204 202 C171 201 145 216 126 270 L108 343 M204 202 C195 245 189 302 184 344 L184 530 M204 202 C214 247 221 302 224 346 L224 530"/><path d="M210 199 C194 178 183 202 210 223 C237 202 226 178 210 199Z" fill="#ea6a65" stroke="#af494b" stroke-width="2"/></g>
+              <g class="circulation-overlay" aria-hidden="true"><path class="vessel vessel-red" d="M218 202 C227 169 230 150 232 127 M218 202 C248 204 275 217 291 271 L309 344 M218 202 C205 240 197 299 193 343 L191 530 M218 202 C228 243 231 301 230 345 L229 530 M212 204 C180 205 148 224 126 270 L110 342 M209 213 C211 282 218 384 219 522"/><path class="vessel vessel-blue" d="M204 202 C193 175 191 149 188 127 M204 202 C171 201 145 216 126 270 L108 343 M204 202 C195 245 189 302 184 344 L184 530 M204 202 C214 247 221 302 224 346 L224 530 M209 205 C239 206 274 225 292 270 L310 341 M210 215 C207 285 201 387 198 525"/><path d="M210 199 C194 178 183 202 210 223 C237 202 226 178 210 199Z" fill="#ea6a65" stroke="#af494b" stroke-width="2"/><g class="blood-motion"><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M184 530 C188 420 190 300 204 204"/></circle><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M205 204 C181 194 177 168 192 158"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M226 159 C240 176 228 198 216 203"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M216 203 C225 304 230 429 230 530"/></circle></g></g>
             </g>
             <g id="customMarkers" aria-hidden="true"></g>
             <g id="hotspots"></g>
@@ -152,7 +154,7 @@
           <h2 id="circulationTitle">Un circuit que no s’atura</h2>
           <p class="panel-lead">El cor empeny la sang cap als pulmons i cap a tot el cos. Mou el control per veure com canvia el ritme dels batecs.</p>
           <div class="heart-control"><div class="heart-pulse" aria-hidden="true">♥</div><div class="rate-readout"><strong><span id="bpmValue">90</span> <small>bpm</small></strong><span>batecs per minut</span></div><input id="bpmSlider" type="range" min="60" max="150" value="90" step="5" aria-label="Batecs per minut"><div class="slider-labels"><span>més tranquil</span><span>més ràpid</span></div></div>
-          <div class="flow-card" aria-label="Camí simplificat de la sang"><div class="flow-line flow-blue"><span>Cos</span><b>→</b><span>Venes</span><b>→</b><span>Cor</span><b>→</b><span>Artèria pulmonar</span><b>→</b><span>Pulmons</span></div><div class="flow-line flow-red"><span>Pulmons</span><b>→</b><span>Venes pulmonars</span><b>→</b><span>Cor</span><b>→</b><span>Artèries</span><b>→</b><span>Cos</span></div></div>
+          <div class="flow-card" aria-label="Camí simplificat de la sang"><div class="flow-line flow-blue"><span>Cos</span><b>→</b><span>Venes</span><b>→</b><span>Cor dret</span><b>→</b><span>Artèria pulmonar</span><b>→</b><span>Pulmons</span></div><div class="flow-line flow-red"><span>Pulmons</span><b>→</b><span>Venes pulmonars</span><b>→</b><span>Cor esquerre</span><b>→</b><span>Artèries</span><b>→</b><span>Cos</span></div></div>
           <div class="fact-box"><strong>Sabies que…?</strong><p id="bpmFact">El cor batega una vegada i una altra. Si el ritme canvia, el recorregut de la sang continua sent el mateix.</p></div>
           <p class="tiny-note">Les artèries surten del cor i les venes hi tornen. El blau i el vermell són colors d’un esquema: la sang no és blava. El control és una simulació, no una mesura del teu pols.</p>
         </section>
