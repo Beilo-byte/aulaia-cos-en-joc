@@ -1,11 +1,11 @@
-const CACHE = 'aulaia-cos-en-joc-v7';
+const CACHE = 'aulaia-cos-en-joc-v8';
 const ASSETS = [
-  './',
-  './index.html',
-  './styles.css',
-  './app.js',
+  './?v=8',
+  './index.html?v=8',
+  './styles.css?v=8',
+  './app.js?v=8',
   './manifest.webmanifest',
-  './credits.html',
+  './credits.html?v=8',
   './icons/icon.svg',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -33,6 +33,6 @@ self.addEventListener('fetch', event => {
     fetch(event.request).then(response => {
       if (!response.ok) return response;
       return caches.open(CACHE).then(cache => cache.put(event.request, response.clone())).then(() => response).catch(() => response);
-    }).catch(() => caches.match(event.request).then(cached => cached || (event.request.mode === 'navigate' ? caches.match('./index.html') : Response.error())))
+    }).catch(() => caches.match(event.request).then(cached => cached || (event.request.mode === 'navigate' ? caches.match('./index.html?v=8') : Response.error())))
   );
 });
