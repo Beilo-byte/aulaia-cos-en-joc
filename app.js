@@ -23,7 +23,7 @@
     {id:'hand', label:'mà', view:'front', x:341, y:347, rx:31, ry:33, fact:'La mà i el polze treballen junts per agafar objectes de mides diferents.'},
     {id:'chest', label:'pit', view:'front', x:210, y:215, rx:46, ry:33, fact:'Darrere del pit hi ha el cor i els pulmons.'},
     {id:'belly', label:'panxa', view:'front', x:210, y:285, rx:45, ry:37, fact:'A la panxa hi ha òrgans que ajuden a transformar els aliments.'},
-    {id:'knee', label:'genoll', view:'front', x:262, y:448, rx:25, ry:26, fact:'El genoll ajuda a caminar, saltar i ajupir-nos.'},
+    {id:'knee', label:'genoll', view:'front', x:262, y:477, rx:25, ry:26, fact:'El genoll ajuda a caminar, saltar i ajupir-nos.'},
     {id:'foot', label:'peu', view:'front', x:267, y:568, rx:37, ry:22, fact:'Els peus suporten el pes del cos i ajuden a mantenir l’equilibri.'},
     {id:'back', label:'esquena', view:'back', x:210, y:236, rx:49, ry:43, fact:'L’esquena ens ajuda a mantenir-nos drets i a moure el tronc.'},
     {id:'glutes', label:'glutis', view:'back', x:210, y:362, rx:47, ry:31, fact:'El gluti major és el múscul més gran del cos i ajuda a estendre el maluc.'},
