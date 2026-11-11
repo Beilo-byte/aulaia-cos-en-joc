@@ -1,0 +1,16 @@
+{
+  "id": "./",
+  "name": "Cos en joc · AULAIA",
+  "short_name": "Cos en joc",
+  "description": "Aprèn les parts del cos, els músculs, la circulació i les emocions jugant.",
+  "lang": "ca",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ec",
+  "theme_color": "#184d77",
+  "icons": [
+    {"src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

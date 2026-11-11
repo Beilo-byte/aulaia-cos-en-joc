@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#184d77">
+  <meta name="description" content="Descobreix el cos humà jugant: pistes, músculs, circulació, emocions i capes creades per tu.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Cos en joc · AULAIA</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Salta al contingut</a>
+  <header class="site-header">
+    <div class="brand" aria-label="AULAIA, Cos en joc">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span class="brand-text"><strong>AULAIA</strong><small>Cos en joc</small></span>
+    </div>
+    <nav class="top-nav" aria-label="Activitats">
+      <button class="nav-button is-active" type="button" data-mode="tickle" aria-current="page">Pessigolles</button>
+      <button class="nav-button" type="button" data-mode="muscles">Músculs</button>
+      <button class="nav-button" type="button" data-mode="circulation">Circulació</button>
+      <button class="nav-button" type="button" data-mode="emotions">Emocions</button>
+      <button class="nav-button" type="button" data-mode="layers">Capes</button>
+    </nav>
+    <button id="installButton" class="install-button" type="button" hidden>Instal·la l’app ↗</button>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-label="Presentació">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="sparkle">✦</span> EXPLORA · PROVA · DESCOBREIX</div>
+        <h1>El cos és una <em>aventura!</em></h1>
+        <p>Fes pessigolles al lloc correcte, descobreix com et mous i segueix el viatge de la sang. Cada pista t’ensenya una cosa nova.</p>
+      </div>
+      <div class="hero-doodles" aria-hidden="true"><span>◌</span><span>✳</span><span>⌁</span></div>
+    </section>
+
+    <div class="app-layout">
+      <section class="figure-card" aria-labelledby="figureTitle">
+        <div class="card-topline"><span class="mini-label">EL NOSTRE PERSONATGE</span><span id="layerBadge" class="layer-badge">Parts del cos</span></div>
+        <div class="figure-title-row"><h2 id="figureTitle">Coneix en Niu</h2><span class="figure-speech" id="figureSpeech" aria-live="polite">Hola! 👋</span></div>
+        <div class="body-stage" id="bodyStage" data-layer="body" data-view="front">
+          <div class="stage-orbit orbit-one" aria-hidden="true"></div>
+          <div class="stage-orbit orbit-two" aria-hidden="true"></div>
+          <svg id="bodySvg" class="body-svg" viewBox="0 0 420 610" role="img" aria-labelledby="svgTitle svgDesc">
+            <title id="svgTitle">Personatge del cos humà</title>
+            <desc id="svgDesc">Toca una zona del personatge per respondre a la pista. Pots girar-lo per veure l’esquena.</desc>
+            <defs>
+              <linearGradient id="skin" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f4bd92"/><stop offset="1" stop-color="#e9a97e"/></linearGradient>
+              <linearGradient id="shirt" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#80d7c7"/><stop offset="1" stop-color="#55b9b5"/></linearGradient>
+              <linearGradient id="shorts" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#265f91"/><stop offset="1" stop-color="#184d77"/></linearGradient>
+              <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#184d77" flood-opacity=".16"/></filter>
+            </defs>
+            <ellipse cx="210" cy="585" rx="102" ry="16" fill="#c7ddd8" opacity=".7"/>
+            <g id="frontArt" class="view-art">
+              <g class="body-base" filter="url(#softShadow)">
+                <path d="M176 316 Q174 398 179 486 L203 486 Q208 401 211 340 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M210 337 Q214 402 216 486 L241 486 Q245 398 244 316 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M179 478 Q174 518 177 555 L203 555 Q209 524 203 481 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M216 481 Q211 523 216 555 L242 555 Q244 517 239 478 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M177 545 Q161 555 152 568 Q147 578 162 581 L204 581 Q210 578 205 567 L200 546 Z" fill="#f6e4c8" stroke="#ac7f62" stroke-width="2"/>
+                <path d="M217 546 L238 546 Q254 551 268 569 Q274 579 260 581 L215 581 Q209 578 213 567 Z" fill="#f6e4c8" stroke="#ac7f62" stroke-width="2"/>
+                <path d="M157 156 Q137 159 128 182 L108 259 Q101 280 107 292 L127 298 Q135 289 139 273 L165 204 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M108 286 Q101 310 101 343 L121 349 Q130 318 128 293 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M101 338 Q86 354 88 376 Q90 394 104 396 Q119 394 123 379 L122 347 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M262 156 Q283 159 291 182 L311 259 Q318 280 312 292 L292 298 Q284 289 280 273 L254 204 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M312 286 Q319 310 319 343 L299 349 Q290 318 292 293 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M319 338 Q334 354 332 376 Q330 394 316 396 Q301 394 297 379 L298 347 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M187 118 L232 118 L234 151 L185 151 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M159 150 Q175 139 189 141 L230 141 Q249 139 261 151 Q274 187 263 255 L251 322 Q210 337 168 322 L156 255 Q146 188 159 150 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <ellipse cx="160" cy="77" rx="12" ry="20" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <ellipse cx="260" cy="77" rx="12" ry="20" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M163 78 Q160 25 210 24 Q261 25 257 79 Q257 126 210 132 Q163 126 163 78 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+              </g>
+              <g class="hair" fill="#293b57"><path d="M163 76 Q152 31 184 18 Q213 1 241 23 Q264 32 257 76 Q248 66 242 52 Q228 61 211 53 Q189 71 163 76Z"/><path d="M178 35 Q183 15 196 16" fill="none" stroke="#45617e" stroke-width="4" stroke-linecap="round"/></g>
+              <g class="face" fill="none" stroke="#513f44" stroke-linecap="round"><path d="M183 83 q8 -7 16 0" stroke-width="3"/><path d="M222 83 q8 -7 16 0" stroke-width="3"/><path d="M198 107 Q210 116 222 107" stroke-width="3"/><circle cx="181" cy="98" r="8" fill="#ed8c87" stroke="none" opacity=".5"/><circle cx="238" cy="98" r="8" fill="#ed8c87" stroke="none" opacity=".5"/></g>
+              <g class="clothes"><path d="M160 150 Q178 141 188 143 L232 143 Q252 141 260 151 L270 182 L252 190 L249 267 Q210 279 170 267 L167 190 L150 182 Z" fill="url(#shirt)" stroke="#2f9997" stroke-width="2"/><path d="M187 144 Q209 168 233 144" fill="none" stroke="#2f9997" stroke-width="3"/><path d="M170 267 Q211 278 250 267 L252 337 Q232 346 211 339 L209 313 L207 339 Q185 347 168 337 Z" fill="url(#shorts)" stroke="#1d4f75" stroke-width="2"/><path d="M189 199 Q210 190 230 199" fill="none" stroke="#bcece0" stroke-width="4" stroke-linecap="round"/></g>
+              <g class="muscle-overlay" aria-hidden="true">
+                <path class="muscle-shape muscle-deltoid" d="M159 153 Q147 163 140 188 Q151 203 164 204 L178 165 Z M259 153 Q272 163 279 188 Q269 203 255 204 L242 165 Z"/>
+                <path class="muscle-shape muscle-biceps" d="M138 195 Q130 224 119 259 L134 266 Q147 235 153 210 Z M281 195 Q289 224 300 259 L285 266 Q272 235 266 210 Z"/>
+                <path class="muscle-shape muscle-serratus" d="M170 203 L187 214 L180 229 L190 236 L181 250 L167 244 Z M250 203 L233 214 L240 229 L230 236 L239 250 L253 244 Z"/>
+                <path class="muscle-shape muscle-forearm" d="M107 291 Q101 318 104 337 L121 341 Q128 316 126 293 Z M313 291 Q319 318 316 337 L299 341 Q292 316 294 293 Z"/>
+                <path class="muscle-shape muscle-quads" d="M177 342 L207 344 L202 471 L181 471 Z M213 344 L242 342 L238 471 L217 471 Z"/>
+              </g>
+              <g class="circulation-overlay" aria-hidden="true">
+                <path class="vessel vessel-red" d="M218 202 C227 169 230 150 232 127 M218 202 C248 204 275 217 291 271 L309 344 M218 202 C205 240 197 299 193 343 L191 530 M218 202 C228 243 231 301 230 345 L229 530"/>
+                <path class="vessel vessel-blue" d="M204 202 C193 175 191 149 188 127 M204 202 C171 201 145 216 126 270 L108 343 M204 202 C195 245 189 302 184 344 L184 530 M204 202 C214 247 221 302 224 346 L224 530"/>
+                <path d="M191 189 Q182 169 190 157 Q201 148 207 165 L208 192Z M226 190 Q237 171 229 157 Q218 149 213 165 L212 192Z" fill="#d4f0ee" stroke="#53b6b5" stroke-width="2"/>
+                <path d="M210 199 C194 178 183 202 210 223 C237 202 226 178 210 199Z" fill="#ea6a65" stroke="#af494b" stroke-width="2"/>
+              </g>
+              <g class="brain-overlay" aria-hidden="true"><path d="M177 61 Q172 41 191 38 Q201 30 211 36 Q225 31 235 44 Q248 48 244 64 Q252 78 236 87 Q230 100 214 94 Q201 101 188 91 Q172 88 176 73 Z" fill="#ed8e9e" stroke="#ae5c70" stroke-width="2"/><path d="M210 37 Q207 53 212 65 Q207 79 214 93 M185 56 Q198 53 198 68 M228 50 Q221 62 232 73" fill="none" stroke="#ae5c70" stroke-width="2" stroke-linecap="round"/></g>
+            </g>
+            <g id="backArt" class="view-art" aria-hidden="true">
+              <g class="body-base" filter="url(#softShadow)">
+                <path d="M176 316 Q174 398 179 486 L203 486 Q208 401 211 340 Z M210 337 Q214 402 216 486 L241 486 Q245 398 244 316 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M179 478 Q174 518 177 555 L203 555 Q209 524 203 481 Z M216 481 Q211 523 216 555 L242 555 Q244 517 239 478 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M177 545 Q161 555 152 568 Q147 578 162 581 L204 581 Q210 578 205 567 L200 546 Z M217 546 L238 546 Q254 551 268 569 Q274 579 260 581 L215 581 Q209 578 213 567 Z" fill="#f6e4c8" stroke="#ac7f62" stroke-width="2"/>
+                <path d="M157 156 Q137 159 128 182 L108 259 Q101 280 107 292 L127 298 Q135 289 139 273 L165 204 Z M262 156 Q283 159 291 182 L311 259 Q318 280 312 292 L292 298 Q284 289 280 273 L254 204 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M108 286 Q101 310 101 343 L121 349 Q130 318 128 293 Z M312 286 Q319 310 319 343 L299 349 Q290 318 292 293 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M101 338 Q86 354 88 376 Q90 394 104 396 Q119 394 123 379 L122 347 Z M319 338 Q334 354 332 376 Q330 394 316 396 Q301 394 297 379 L298 347 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M187 118 L232 118 L234 151 L185 151 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M159 150 Q175 139 189 141 L230 141 Q249 139 261 151 Q274 187 263 255 L251 322 Q210 337 168 322 L156 255 Q146 188 159 150 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <ellipse cx="160" cy="77" rx="12" ry="20" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/><ellipse cx="260" cy="77" rx="12" ry="20" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+                <path d="M163 78 Q160 25 210 24 Q261 25 257 79 Q257 126 210 132 Q163 126 163 78 Z" fill="url(#skin)" stroke="#ba7e64" stroke-width="2"/>
+              </g>
+              <path d="M163 76 Q152 31 184 18 Q213 1 241 23 Q264 32 257 76 Q254 111 232 125 Q210 134 188 124 Q166 111 163 76Z" fill="#293b57"/><path d="M181 42 Q194 63 210 59 Q231 63 243 44" fill="none" stroke="#45617e" stroke-width="4"/>
+              <g class="clothes"><path d="M160 150 Q178 141 188 143 L232 143 Q252 141 260 151 L270 182 L252 190 L249 267 Q210 279 170 267 L167 190 L150 182 Z" fill="url(#shirt)" stroke="#2f9997" stroke-width="2"/><path d="M170 267 Q211 278 250 267 L252 337 Q232 346 211 339 L209 313 L207 339 Q185 347 168 337 Z" fill="url(#shorts)" stroke="#1d4f75" stroke-width="2"/><path d="M208 173 L208 243" fill="none" stroke="#bcece0" stroke-width="3" stroke-linecap="round"/></g>
+              <g class="muscle-overlay" aria-hidden="true"><path class="muscle-shape muscle-trapezius" d="M185 139 Q208 165 235 139 L251 181 L212 211 L168 181Z"/><path class="muscle-shape muscle-triceps" d="M140 195 L154 211 L133 266 L118 259Z M280 195 L266 211 L287 266 L302 259Z"/><path class="muscle-shape muscle-glutes" d="M169 286 Q187 274 208 290 L207 340 Q185 348 168 333Z M212 290 Q233 274 251 286 L252 333 Q234 348 213 340Z"/><path class="muscle-shape muscle-calves" d="M179 477 L203 477 L201 539 L178 539Z M217 477 L240 477 L242 539 L219 539Z"/></g>
+              <g class="circulation-overlay" aria-hidden="true"><path class="vessel vessel-red" d="M218 202 C227 169 230 150 232 127 M218 202 C248 204 275 217 291 271 L309 344 M218 202 C205 240 197 299 193 343 L191 530 M218 202 C228 243 231 301 230 345 L229 530"/><path class="vessel vessel-blue" d="M204 202 C193 175 191 149 188 127 M204 202 C171 201 145 216 126 270 L108 343 M204 202 C195 245 189 302 184 344 L184 530 M204 202 C214 247 221 302 224 346 L224 530"/><path d="M210 199 C194 178 183 202 210 223 C237 202 226 178 210 199Z" fill="#ea6a65" stroke="#af494b" stroke-width="2"/></g>
+            </g>
+            <g id="customMarkers" aria-hidden="true"></g>
+            <g id="hotspots"></g>
+          </svg>
+          <div class="tickle-pop" aria-hidden="true">He-he! ✨</div>
+        </div>
+        <div class="figure-footer">
+          <button id="turnButton" class="round-action" type="button" aria-label="Gira el personatge">↺ <span>Gira’l</span></button>
+          <span id="viewLabel" class="view-label">Vista de davant</span>
+          <span class="figure-hint">Toca, clica o prem Retorn</span>
+        </div>
+        <details class="accessible-zones"><summary>Tria una zona de la llista</summary><div id="zoneButtons" class="zone-buttons"></div></details>
+      </section>
+
+      <div class="activity-column">
+        <section id="ticklePanel" class="activity-panel" data-panel="tickle" aria-labelledby="tickleTitle">
+          <div class="activity-kicker"><span class="number-pill">01</span> EL JOC DE LES PISTES <span class="score-pill" id="scorePill">0 descobertes</span></div>
+          <h2 id="tickleTitle">On li fem pessigolles?</h2>
+          <p class="panel-lead">Llegeix, pensa i toca el lloc. Les pistes expliquen què fa cada part del cos.</p>
+          <div class="clue-card"><div class="clue-icon" aria-hidden="true">?</div><div><span class="clue-label">PISTA</span><p id="clueText"></p></div></div>
+          <div id="clueFeedback" class="feedback" role="status" aria-live="polite">Toca una zona del personatge.</div>
+          <div class="panel-actions"><button id="extraHintButton" class="secondary-button" type="button">Una altra pista</button><button id="nextClueButton" class="primary-button" type="button">Una altra descoberta →</button></div>
+          <div class="progress-row"><span>Descobertes d’aquesta sessió</span><div id="progressDots" class="progress-dots" aria-hidden="true"></div></div>
+        </section>
+
+        <section id="musclesPanel" class="activity-panel" data-panel="muscles" aria-labelledby="musclesTitle" hidden>
+          <div class="activity-kicker"><span class="number-pill">02</span> COM ENS MOVEM</div>
+          <h2 id="musclesTitle">El pot de galetes és dalt de tot!</h2>
+          <p class="panel-lead">Un moviment necessita un equip de músculs. Tria els que hi ajuden en cada moment.</p>
+          <div class="story-strip"><span aria-hidden="true">🍪</span><p id="muscleStory"></p></div>
+          <div class="step-tabs" role="group" aria-label="Moments del moviment"><button id="muscleStep1" class="step-button is-active" type="button" data-step="0">1 · Arribar-hi</button><button id="muscleStep2" class="step-button" type="button" data-step="1">2 · Agafar i acostar</button></div>
+          <fieldset class="muscle-options"><legend id="muscleQuestion">Quins músculs t’ajuden?</legend><div id="muscleChoices" class="choice-grid"></div></fieldset>
+          <button id="checkMusclesButton" class="primary-button full" type="button">Comprova l’equip →</button>
+          <div id="muscleFeedback" class="feedback muscle-feedback" role="status" aria-live="polite">Pots seleccionar més d’una resposta.</div>
+          <p class="tiny-note">Parlem dels músculs principals d’aquest gest; el cos en fa treballar molts més.</p>
+        </section>
+
+        <section id="circulationPanel" class="activity-panel" data-panel="circulation" aria-labelledby="circulationTitle" hidden>
+          <div class="activity-kicker"><span class="number-pill">03</span> EL VIATGE DE LA SANG</div>
+          <h2 id="circulationTitle">Un circuit que no s’atura</h2>
+          <p class="panel-lead">El cor empeny la sang cap als pulmons i cap a tot el cos. Mou el control per veure com canvia el ritme dels batecs.</p>
+          <div class="heart-control"><div class="heart-pulse" aria-hidden="true">♥</div><div class="rate-readout"><strong><span id="bpmValue">90</span> <small>bpm</small></strong><span>batecs per minut</span></div><input id="bpmSlider" type="range" min="60" max="150" value="90" step="5" aria-label="Batecs per minut"><div class="slider-labels"><span>més tranquil</span><span>més ràpid</span></div></div>
+          <div class="flow-card" aria-label="Camí simplificat de la sang"><div class="flow-line flow-blue"><span>Cos</span><b>→</b><span>Venes</span><b>→</b><span>Cor</span></div><div class="flow-line flow-blue"><span>Cor</span><b>→</b><span>Pulmons</span></div><div class="flow-line flow-red"><span>Pulmons</span><b>→</b><span>Cor</span><b>→</b><span>Artèries</span><b>→</b><span>Cos</span></div></div>
+          <div class="fact-box"><strong>Sabies que…?</strong><p id="bpmFact">El cor batega una vegada i una altra. Si el ritme canvia, el recorregut de la sang continua sent el mateix.</p></div>
+          <p class="tiny-note">El blau i el vermell són colors d’un esquema: la sang no és blava. El control és una simulació, no una mesura del teu pols.</p>
+        </section>
+
+        <section id="emotionsPanel" class="activity-panel" data-panel="emotions" aria-labelledby="emotionsTitle" hidden>
+          <div class="activity-kicker"><span class="number-pill">04</span> CERVELL I EMOCIONS</div>
+          <h2 id="emotionsTitle">Un soroll al pati! Què passa?</h2>
+          <p class="panel-lead">Cau una pilota i fa un soroll fort. Diverses parts del cervell comparteixen informació. Relaciona cada pista amb la seva tasca.</p>
+          <div class="brain-situation"><span aria-hidden="true">💥</span><span>«PAM!» Una pilota ha caigut darrere teu.</span></div>
+          <div id="brainMatch" class="brain-match"></div>
+          <button id="checkBrainButton" class="primary-button full" type="button">Comprova les relacions →</button>
+          <div id="brainFeedback" class="feedback" role="status" aria-live="polite">Tria una resposta per a cada part.</div>
+          <div class="fact-box"><strong>Una idea important</strong><p>Les emocions no tenen un únic “botó”. El cervell treballa en xarxa i el cos també ens dona pistes, com un batec més ràpid.</p></div>
+        </section>
+
+        <section id="layersPanel" class="activity-panel" data-panel="layers" aria-labelledby="layersTitle" hidden>
+          <div class="activity-kicker"><span class="number-pill">05</span> EL TEU LABORATORI</div>
+          <h2 id="layersTitle">Mira el cos per capes</h2>
+          <p class="panel-lead">Cada capa és una manera de mirar el mateix cos. També pots inventar-ne una i posar-hi punts d’aprenentatge.</p>
+          <div id="layerList" class="layer-list"></div>
+          <div id="layerDetail" class="layer-detail"></div>
+          <details class="create-layer"><summary>＋ Crea una capa nova</summary><form id="newLayerForm" class="layer-form"><label>Nom de la capa<input name="name" maxlength="32" required placeholder="Per exemple, els ossos"></label><label>Què aprendrem?<textarea name="description" maxlength="160" required rows="2" placeholder="Una frase curta per explicar aquesta capa"></textarea></label><label>Color dels punts<input name="color" type="color" value="#8056c6"></label><button class="primary-button" type="submit">Crea la capa</button></form></details>
+          <div class="share-row"><button id="exportLayersButton" class="text-button" type="button">Descarrega les meves capes ↓</button><label class="text-button import-label">Importa capes ↑<input id="importLayersInput" type="file" accept="application/json,.json" hidden></label></div>
+          <p class="tiny-note">Les capes que crees es guarden en aquest dispositiu. Descarrega-les si les vols conservar o compartir.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><span><strong>AULAIA</strong> · Aprendre és explorar</span><span>Fet per jugar i conversar a classe · <a href="./credits.html">Fonts i crèdits</a></span></footer>
+  <script src="./app.js" defer></script>
+</body>
+</html>
