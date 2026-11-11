@@ -2,6 +2,7 @@
 
 PWA estàtica en català per descobrir el cos humà a primària. Inclou:
 
+- Cinc personatges il·lustrats per triar: nen, nena, adolescent, home i dona, amb vista de davant i d’esquena.
 - Joc de pistes i pessigolles sobre parts del cos.
 - Repte dels músculs que intervenen en agafar un pot de galetes d’un armari alt.
 - Circuit simplificat de la sang amb ritme cardíac ajustable.
@@ -18,8 +19,8 @@ Puja tots els fitxers d’aquesta carpeta a l’arrel de la branca `main`, inclo
 
 ## Contingut
 
-Els dibuixos i els circuits són esquemes adaptats a primària. Consulta [Fonts i crèdits](./credits.html) per veure les referències científiques.
+Les il·lustracions dels personatges s’han generat expressament per a aquesta app. Les capes anatòmiques i els circuits són esquemes adaptats a primària. Consulta [Fonts i crèdits](./credits.html) per veure les referències científiques.
 
 ## Llicència
 
-El codi i els dibuixos originals d’aquesta primera versió es poden reutilitzar i adaptar dins del projecte AULAIA. Les fonts externes citades només s’han fet servir com a referència científica.
+El codi i els materials visuals d’aquesta versió es poden reutilitzar i adaptar dins del projecte AULAIA. Les fonts externes citades només s’han fet servir com a referència científica.

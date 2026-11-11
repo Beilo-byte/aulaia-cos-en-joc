@@ -4,23 +4,38 @@
   const $ = (selector) => document.querySelector(selector);
   const svgNS = 'http://www.w3.org/2000/svg';
   const storageKey = 'aulaia-cos-en-joc-capes-v1';
+  const personStorageKey = 'aulaia-cos-en-joc-personatge-v1';
+  const people = {
+    nen: {label:'Nen', image:'./characters/nen.webp'},
+    nena: {label:'Nena', image:'./characters/nena.webp'},
+    adolescent: {label:'Adolescent', image:'./characters/adolescent.webp'},
+    home: {label:'Home', image:'./characters/home.webp'},
+    dona: {label:'Dona', image:'./characters/dona.webp'}
+  };
   const zones = [
-    {id:'eyes', label:'ulls', view:'front', x:210, y:82, rx:31, ry:15, fact:'Els ulls capten la llum; el cervell interpreta allò que veiem.'},
-    {id:'ear', label:'orella', view:'front', x:260, y:77, rx:14, ry:23, fact:'L’oïda transforma vibracions en missatges per al cervell i també ajuda a l’equilibri.'},
-    {id:'nose', label:'nas', view:'front', x:210, y:97, rx:14, ry:13, fact:'Amb el nas olorem i deixem entrar l’aire.'},
-    {id:'mouth', label:'boca', view:'front', x:210, y:113, rx:18, ry:10, fact:'A la boca masteguem i barregem el menjar amb saliva: la digestió ja comença.'},
-    {id:'neck', label:'coll', view:'front', x:210, y:139, rx:26, ry:18, fact:'El coll uneix el cap i el tronc, i ens permet moure el cap.'},
-    {id:'shoulder', label:'espatlla', view:'front', x:268, y:177, rx:24, ry:25, fact:'L’espatlla dona molta mobilitat al braç.'},
-    {id:'elbow', label:'colze', view:'front', x:303, y:282, rx:18, ry:20, fact:'El colze és una articulació que deixa doblegar i estirar el braç.'},
-    {id:'hand', label:'mà', view:'front', x:317, y:365, rx:23, ry:32, fact:'La mà i el polze treballen junts per agafar objectes de mides diferents.'},
-    {id:'chest', label:'pit', view:'front', x:210, y:207, rx:40, ry:27, fact:'Darrere del pit hi ha el cor i els pulmons.'},
-    {id:'belly', label:'panxa', view:'front', x:210, y:270, rx:38, ry:31, fact:'A la panxa hi ha òrgans que ajuden a transformar els aliments.'},
-    {id:'knee', label:'genoll', view:'front', x:229, y:461, rx:20, ry:24, fact:'El genoll ajuda a caminar, saltar i ajupir-nos.'},
-    {id:'foot', label:'peu', view:'front', x:237, y:566, rx:33, ry:18, fact:'Els peus suporten el pes del cos i ajuden a mantenir l’equilibri.'},
-    {id:'back', label:'esquena', view:'back', x:210, y:218, rx:43, ry:38, fact:'L’esquena ens ajuda a mantenir-nos drets i a moure el tronc.'},
-    {id:'glutes', label:'glutis', view:'back', x:210, y:312, rx:40, ry:30, fact:'El gluti major és el múscul més gran del cos i ajuda a estendre el maluc.'},
-    {id:'calf', label:'panxell', view:'back', x:229, y:511, rx:20, ry:33, fact:'Els músculs del panxell ajuden a posar-nos de puntetes.'}
+    {id:'eyes', label:'ulls', view:'front', x:210, y:94, rx:30, ry:11, fact:'Els ulls capten la llum; el cervell interpreta allò que veiem.'},
+    {id:'ear', label:'orella', view:'front', x:255, y:100, rx:16, ry:20, fact:'L’oïda transforma vibracions en missatges per al cervell i també ajuda a l’equilibri.'},
+    {id:'nose', label:'nas', view:'front', x:210, y:111, rx:13, ry:9, fact:'Amb el nas olorem i deixem entrar l’aire.'},
+    {id:'mouth', label:'boca', view:'front', x:210, y:128, rx:19, ry:9, fact:'A la boca masteguem i barregem el menjar amb saliva: la digestió ja comença.'},
+    {id:'neck', label:'coll', view:'front', x:210, y:153, rx:27, ry:18, fact:'El coll uneix el cap i el tronc, i ens permet moure el cap.'},
+    {id:'shoulder', label:'espatlla', view:'front', x:279, y:189, rx:26, ry:26, fact:'L’espatlla dona molta mobilitat al braç.'},
+    {id:'elbow', label:'colze', view:'front', x:303, y:259, rx:22, ry:22, fact:'El colze és una articulació que deixa doblegar i estirar el braç.'},
+    {id:'hand', label:'mà', view:'front', x:341, y:347, rx:31, ry:33, fact:'La mà i el polze treballen junts per agafar objectes de mides diferents.'},
+    {id:'chest', label:'pit', view:'front', x:210, y:215, rx:46, ry:33, fact:'Darrere del pit hi ha el cor i els pulmons.'},
+    {id:'belly', label:'panxa', view:'front', x:210, y:285, rx:45, ry:37, fact:'A la panxa hi ha òrgans que ajuden a transformar els aliments.'},
+    {id:'knee', label:'genoll', view:'front', x:262, y:448, rx:25, ry:26, fact:'El genoll ajuda a caminar, saltar i ajupir-nos.'},
+    {id:'foot', label:'peu', view:'front', x:267, y:568, rx:37, ry:22, fact:'Els peus suporten el pes del cos i ajuden a mantenir l’equilibri.'},
+    {id:'back', label:'esquena', view:'back', x:210, y:236, rx:49, ry:43, fact:'L’esquena ens ajuda a mantenir-nos drets i a moure el tronc.'},
+    {id:'glutes', label:'glutis', view:'back', x:210, y:362, rx:47, ry:31, fact:'El gluti major és el múscul més gran del cos i ajuda a estendre el maluc.'},
+    {id:'calf', label:'panxell', view:'back', x:262, y:504, rx:26, ry:36, fact:'Els músculs del panxell ajuden a posar-nos de puntetes.'}
   ];
+  const personZoneAdjustments = {
+    nen: {},
+    nena: {eyes:[0,-4],ear:[0,-4],nose:[0,-4],mouth:[0,-4],neck:[0,-4],shoulder:[4,-3],hand:[-2,0]},
+    adolescent: {eyes:[0,-22],ear:[0,-20],nose:[0,-21],mouth:[0,-20],neck:[0,-20],shoulder:[5,-24],elbow:[5,-13],hand:[4,-10],chest:[0,-25],belly:[0,-25],back:[0,-24]},
+    home: {eyes:[0,-28],ear:[0,-26],nose:[0,-27],mouth:[0,-27],neck:[0,-26],shoulder:[7,-35],elbow:[8,-18],hand:[8,-14],chest:[0,-36],belly:[0,-37],back:[0,-34]},
+    dona: {eyes:[0,-25],ear:[0,-24],nose:[0,-24],mouth:[0,-23],neck:[0,-24],shoulder:[4,-32],elbow:[5,-15],hand:[5,-12],chest:[0,-33],belly:[0,-32],back:[0,-31]}
+  };
 
   const clues = [
     {zone:'eyes', text:'Dues finestres deixen entrar la llum; el cervell hi descobreix formes i colors.', hint:'Quan es fa fosc, aquestes finestres tenen menys llum per treballar.'},
@@ -78,6 +93,8 @@
 
   let mode = 'tickle';
   let view = 'front';
+  let person = 'nen';
+  try { const savedPerson = localStorage.getItem(personStorageKey); if (people[savedPerson]) person = savedPerson; } catch {}
   let selectedLayer = 'body';
   let customLayers = loadLayers();
   let clueDeck = [0, ...shuffle(Array.from({length:clues.length - 1}, (_, i) => i + 1))];
@@ -116,11 +133,32 @@
   function setView(next) {
     view = next;
     $('#bodyStage').dataset.view = next;
-    $('#viewLabel').textContent = next === 'front' ? 'Vista de davant' : 'Vista del darrere';
+    $('#viewLabel').textContent = `${people[person].label} · ${next === 'front' ? 'davant' : 'darrere'}`;
     $('#backArt').setAttribute('aria-hidden', next !== 'back');
     $('#frontArt').setAttribute('aria-hidden', next !== 'front');
     renderHotspots();
     renderCustomMarkers();
+  }
+
+  function zonePosition(zone) {
+    const [dx, dy] = personZoneAdjustments[person][zone.id] || [0, 0];
+    return {x:zone.x + dx, y:zone.y + dy};
+  }
+
+  function setPerson(next) {
+    if (!people[next]) return;
+    person = next;
+    $('#bodyStage').dataset.person = next;
+    $('#frontCharacter').setAttribute('href', people[next].image);
+    $('#backCharacter').setAttribute('href', people[next].image);
+    $('#svgTitle').textContent = `Cos humà: ${people[next].label.toLowerCase()}`;
+    document.querySelectorAll('.person-option').forEach(button => {
+      const active = button.dataset.person === next;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    try { localStorage.setItem(personStorageKey, next); } catch {}
+    setView(view);
   }
 
   function setStageLayer(layer) {
@@ -161,10 +199,11 @@
     const buttons = $('#zoneButtons');
     buttons.replaceChildren();
     zones.filter(zone => zone.view === view).forEach(zone => {
+      const point = zonePosition(zone);
       const group = svgNode('g', {class:'hotspot', role:'button', tabindex:'0', 'aria-label':`Toca ${zone.label}`, 'data-zone':zone.id});
-      group.append(svgNode('ellipse', {class:'hit-ring', cx:zone.x, cy:zone.y, rx:zone.rx, ry:zone.ry}));
-      group.append(svgNode('ellipse', {class:'hit-area', cx:zone.x, cy:zone.y, rx:zone.rx + 5, ry:zone.ry + 5}));
-      const label = svgNode('text', {class:'hotspot-label', x:zone.x, y:zone.y - zone.ry - 8, 'text-anchor':'middle'});
+      group.append(svgNode('ellipse', {class:'hit-ring', cx:point.x, cy:point.y, rx:zone.rx, ry:zone.ry}));
+      group.append(svgNode('ellipse', {class:'hit-area', cx:point.x, cy:point.y, rx:zone.rx + 5, ry:zone.ry + 5}));
+      const label = svgNode('text', {class:'hotspot-label', x:point.x, y:point.y - zone.ry - 8, 'text-anchor':'middle'});
       label.textContent = zone.label;
       group.append(label);
       group.addEventListener('click', () => handleZone(zone.id, group));
@@ -524,9 +563,10 @@
     if (!layer) return;
     layer.points.filter(point => zones.find(zone => zone.id === point.zone)?.view === view).forEach((point, index) => {
       const zone = zones.find(item => item.id === point.zone);
+      const position = zonePosition(zone);
       const marker = svgNode('g', {class:'custom-marker'});
-      marker.append(svgNode('circle', {cx:zone.x, cy:zone.y, r:13, fill:layer.color}));
-      const text = svgNode('text', {x:zone.x, y:zone.y + 1});
+      marker.append(svgNode('circle', {cx:position.x, cy:position.y, r:13, fill:layer.color}));
+      const text = svgNode('text', {x:position.x, y:position.y + 1});
       text.textContent = String(index + 1);
       marker.append(text);
       parent.append(marker);
@@ -602,6 +642,7 @@
   }
 
   document.querySelectorAll('.nav-button').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
+  document.querySelectorAll('.person-option').forEach(button => button.addEventListener('click', () => setPerson(button.dataset.person)));
   $('#turnButton').addEventListener('click', () => setView(view === 'front' ? 'back' : 'front'));
   $('#extraHintButton').addEventListener('click', showExtraHint);
   $('#mobileExtraHintButton').addEventListener('click', showExtraHint);
@@ -615,7 +656,7 @@
   $('#exportLayersButton').addEventListener('click', exportLayers);
   $('#importLayersInput').addEventListener('change', importLayers);
 
-  renderHotspots();
+  setPerson(person);
   renderProgress();
   renderMuscleStep();
   renderBrain();

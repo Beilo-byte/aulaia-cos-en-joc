@@ -1,4 +1,4 @@
-const CACHE = 'aulaia-cos-en-joc-v3';
+const CACHE = 'aulaia-cos-en-joc-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -8,7 +8,12 @@ const ASSETS = [
   './credits.html',
   './icons/icon.svg',
   './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icons/icon-512.png',
+  './characters/nen.webp',
+  './characters/nena.webp',
+  './characters/adolescent.webp',
+  './characters/home.webp',
+  './characters/dona.webp'
 ];
 
 self.addEventListener('install', event => {
