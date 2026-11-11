@@ -14,7 +14,7 @@ Obre `index.html` per provar el joc. Per instal·lar-la com a PWA i disposar de 
 
 ## Publicar-la a GitHub Pages
 
-Puja tots els fitxers d’aquesta carpeta a l’arrel de la branca `main`. A **Settings → Pages**, tria **Deploy from a branch**, branca **main** i carpeta **/(root)**. L’app utilitza rutes relatives i funciona sota la ruta pròpia del repositori.
+Puja tots els fitxers d’aquesta carpeta a l’arrel de la branca `main`, inclosa la carpeta oculta `.github`. A **Settings → Pages**, tria **GitHub Actions** com a font. El fitxer `.github/workflows/pages.yml` publica automàticament el lloc estàtic en cada canvi a `main`. L’app utilitza rutes relatives i funciona sota la ruta pròpia del repositori.
 
 ## Contingut
 

@@ -1,0 +1,30 @@
+name: Publica Cos en joc
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Descarrega el codi
+        uses: actions/checkout@v6
+      - name: Prepara GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Puja els fitxers estàtics
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
+      - name: Publica
+        id: deployment
+        uses: actions/deploy-pages@v4
