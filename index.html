@@ -8,8 +8,8 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
-  <link rel="stylesheet" href="./styles.css?v=9">
-  <link rel="stylesheet" href="./layout.css?v=9">
+  <link rel="stylesheet" href="./styles.css?v=10">
+  <link rel="stylesheet" href="./layout.css?v=10">
   <title>Cos en joc · AULAIA</title>
 </head>
 <body class="app-page" data-mode="tickle">
@@ -75,6 +75,10 @@
                 <g class="bone-skull" fill="#fff7e5" stroke="#66849b" stroke-width="2.6">
                   <path d="M176 69 Q176 35 210 31 Q244 35 244 69 L240 91 Q237 110 223 119 L197 119 Q183 110 180 91 Z"/>
                   <path d="M188 104 Q210 119 232 104 L228 124 Q210 137 192 124 Z"/>
+                  <ellipse cx="195" cy="78" rx="9" ry="11" fill="#d9e8e9" stroke="#66849b" stroke-width="2"/>
+                  <ellipse cx="225" cy="78" rx="9" ry="11" fill="#d9e8e9" stroke="#66849b" stroke-width="2"/>
+                  <path d="M210 87 L205 101 L215 101 Z" fill="#d9e8e9" stroke="#66849b" stroke-width="1.5"/>
+                  <path d="M194 109 Q210 115 226 109 M196 114 L196 119 M203 115 L203 122 M210 115 L210 123 M217 115 L217 122 M224 114 L224 119" fill="none" stroke="#66849b" stroke-width="1.5"/>
                 </g>
                 <g class="bone-spine" fill="#fff7e5" stroke="#66849b" stroke-width="2">
                   <path d="M210 135 C209 184 209 270 210 335" fill="none" stroke="#d6e3e9" stroke-width="13"/>
@@ -286,9 +290,8 @@
           <h2 id="circulationTitle">Un circuit que no s’atura</h2>
           <p class="panel-lead">El cor empeny la sang cap als pulmons i cap a tot el cos. Mou el control per veure com canvia el ritme dels batecs.</p>
           <div class="heart-control"><div class="heart-pulse" aria-hidden="true">♥</div><div class="rate-readout"><strong><span id="bpmValue">90</span> <small>bpm</small></strong><span>batecs per minut</span></div><input id="bpmSlider" type="range" min="60" max="150" value="90" step="5" aria-label="Batecs per minut"><div class="slider-labels"><span>més tranquil</span><span>més ràpid</span></div></div>
-          <details class="learn-more"><summary>Segueix el recorregut de la sang</summary><div class="flow-card" aria-label="Camí simplificat de la sang"><div class="flow-line flow-blue"><span>Cos</span><b>→</b><span>Venes</span><b>→</b><span>Cor dret</span><b>→</b><span>Artèria pulmonar</span><b>→</b><span>Pulmons</span></div><div class="flow-line flow-red"><span>Pulmons</span><b>→</b><span>Venes pulmonars</span><b>→</b><span>Cor esquerre</span><b>→</b><span>Artèries</span><b>→</b><span>Cos</span></div></div></details>
+          <details class="learn-more"><summary>Segueix el recorregut de la sang</summary><div class="flow-card" aria-label="Camí simplificat de la sang"><div class="flow-line flow-blue"><span>Cos</span><b>→</b><span>Venes</span><b>→</b><span>Cor dret</span><b>→</b><span>Artèria pulmonar</span><b>→</b><span>Pulmons</span></div><div class="flow-line flow-red"><span>Pulmons</span><b>→</b><span>Venes pulmonars</span><b>→</b><span>Cor esquerre</span><b>→</b><span>Artèries</span><b>→</b><span>Cos</span></div></div><p class="tiny-note">Les artèries surten del cor i les venes hi tornen. El blau i el vermell són colors d’un esquema: la sang no és blava. El control és una simulació, no una mesura del teu pols.</p></details>
           <div class="fact-box"><strong>Sabies que…?</strong><p id="bpmFact">El cor batega una vegada i una altra. Si el ritme canvia, el recorregut de la sang continua sent el mateix.</p></div>
-          <p class="tiny-note">Les artèries surten del cor i les venes hi tornen. El blau i el vermell són colors d’un esquema: la sang no és blava. El control és una simulació, no una mesura del teu pols.</p>
         </section>
 
         <section id="nervesPanel" class="activity-panel" data-panel="nerves" aria-labelledby="nervesTitle" hidden>
@@ -326,7 +329,7 @@
       </div>
     </div>
   </main>
-  <footer class="site-footer"><span><strong>AULAIA</strong> · Aprendre és explorar</span><span>Fet per jugar i conversar a classe · <a href="./credits.html?v=9">Fonts i crèdits</a></span></footer>
-  <script src="./app.js?v=9" defer></script>
+  <footer class="site-footer"><span><strong>AULAIA</strong> · Aprendre és explorar</span><span>Fet per jugar i conversar a classe · <a href="./credits.html?v=10">Fonts i crèdits</a></span></footer>
+  <script src="./app.js?v=10" defer></script>
 </body>
 </html>

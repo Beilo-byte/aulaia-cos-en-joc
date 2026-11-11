@@ -116,18 +116,43 @@
 }
 @media(max-width:700px) and (orientation:portrait){
   .app-page:is([data-mode=tickle],[data-mode=bones]) .app-layout{display:flex;flex-direction:column}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .activity-column{order:-1;position:sticky;top:0;right:auto;bottom:auto;z-index:8;max-height:min(35dvh,225px);overflow:auto;border-radius:18px 18px 0 0}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .activity-panel{border-radius:18px 18px 0 0;padding:10px 12px}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .activity-column{order:-1;position:sticky;top:0;right:auto;bottom:auto;z-index:8;max-height:190px;overflow:auto;border-radius:18px 18px 0 0}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .activity-panel{border-radius:18px 18px 0 0;padding:8px 11px}
   .app-page:is([data-mode=tickle],[data-mode=bones]) .figure-card{order:0;border-radius:0 0 18px 18px}
   .app-page:is([data-mode=tickle],[data-mode=bones]) .body-stage{border-radius:0 0 18px 18px}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .activity-kicker{font-size:9px}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .clue-card{margin:5px 0;padding:8px 10px;gap:8px}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .clue-card p{font-size:16px;line-height:1.2}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .feedback{padding:6px 8px;font-size:11px;line-height:1.3}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .panel-actions{margin-top:5px}
-  .app-page:is([data-mode=tickle],[data-mode=bones]) .panel-actions button{min-height:37px;padding:6px 8px;font-size:11px}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .activity-kicker{display:none}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .clue-card{margin:0 0 5px;padding:6px 8px;gap:7px}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .clue-icon{width:24px;height:24px;font-size:16px}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .clue-label{font-size:9px}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .clue-card p{font-size:15px;line-height:1.18;margin-top:2px}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .feedback{padding:5px 7px;font-size:11px;line-height:1.25;max-height:40px;overflow:auto}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .panel-actions{margin-top:4px}
+  .app-page:is([data-mode=tickle],[data-mode=bones]) .panel-actions button{min-height:34px;padding:5px 8px;font-size:11px}
   .app-page[data-mode=tickle] .progress-row,.app-page[data-mode=bones] #bonesTitle,.app-page[data-mode=bones] #bonesPanel>.panel-lead,.app-page[data-mode=bones] #bonesPanel .learn-more{display:none}
-  .app-page[data-mode=tickle] #ticklePanel .clue-card p{font-size:16px}
+  .app-page[data-mode=tickle] #ticklePanel .clue-card{margin:0 0 5px}
+  .app-page[data-mode=tickle] #ticklePanel .clue-card p{font-size:15px}
+  .app-page:is([data-mode=circulation],[data-mode=nerves]) .app-layout{display:flex;flex-direction:column}
+  .app-page:is([data-mode=circulation],[data-mode=nerves]) .activity-column{order:-1;position:sticky;top:0;right:auto;bottom:auto;z-index:8;max-height:210px;overflow:auto;border-radius:18px 18px 0 0}
+  .app-page:is([data-mode=circulation],[data-mode=nerves]) .activity-panel{border-radius:18px 18px 0 0;padding:8px 11px}
+  .app-page:is([data-mode=circulation],[data-mode=nerves]) .figure-card{order:0;border-radius:0 0 18px 18px}
+  .app-page:is([data-mode=circulation],[data-mode=nerves]) .body-stage{border-radius:0 0 18px 18px}
+  .app-page:is([data-mode=circulation],[data-mode=nerves]) .activity-kicker,.app-page:is([data-mode=circulation],[data-mode=nerves]) .activity-panel h2,.app-page:is([data-mode=circulation],[data-mode=nerves]) .activity-panel>.panel-lead{display:none}
+  .app-page[data-mode=circulation] .heart-control{margin:0;padding:7px;grid-template-columns:40px 1fr;column-gap:10px}
+  .app-page[data-mode=circulation] .heart-pulse{width:39px;height:39px;font-size:22px;border-radius:11px}
+  .app-page[data-mode=circulation] .rate-readout strong{font-size:23px}
+  .app-page[data-mode=circulation] .heart-control input{margin:6px 0 1px}
+  .app-page[data-mode=circulation] .slider-labels{font-size:9px}
+  .app-page[data-mode=circulation] .learn-more{margin-top:5px;padding-top:5px}
+  .app-page[data-mode=circulation] #circulationPanel>.fact-box{display:none}
+  .app-page[data-mode=nerves] .activity-column{max-height:250px}
+  .app-page[data-mode=nerves] .clue-card{margin:0 0 6px;padding:6px 8px;gap:7px}
+  .app-page[data-mode=nerves] .clue-icon{width:24px;height:24px;font-size:16px}
+  .app-page[data-mode=nerves] .clue-card p{font-size:15px;line-height:1.18;margin-top:2px}
+  .app-page[data-mode=nerves] .nerve-choices{margin:6px 0;gap:5px}
+  .app-page[data-mode=nerves] .nerve-choice{min-height:44px;padding:5px;font-size:11px}
+  .app-page[data-mode=nerves] .feedback{padding:5px 7px;font-size:11px;max-height:40px;overflow:auto}
+  .app-page[data-mode=nerves] #nextNerveButton{min-height:34px;margin:5px 0;padding:5px}
+  .app-page[data-mode=nerves] #nervesPanel .learn-more{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   .app-page .body-stage[data-layer=nerves] .nerve-route{transition:none}
