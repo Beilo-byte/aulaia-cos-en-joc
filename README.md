@@ -2,9 +2,11 @@
 
 PWA estàtica en català per descobrir el cos humà a primària. Inclou:
 
-- Cinc personatges il·lustrats per triar: nen, nena, adolescent, home i dona, amb vista de davant i d’esquena.
+- Dues identitats il·lustrades al llarg de les edats: en Nil (nen i adult) i la Nia (nena, adolescent i adulta), amb vista de davant i d’esquena.
 - Joc de pistes i pessigolles sobre parts del cos.
-- Repte dels músculs que intervenen en agafar un pot de galetes d’un armari alt.
+- Cinc capes principals: cos, músculs, ossos, venes i artèries, i nervis.
+- Repte dels músculs que intervenen en agafar un pot de galetes d’un armari alt, amb mapa muscular sobre roba d’aula.
+- Joc dels ossos que sostenen i protegeixen; recorreguts dels missatges nerviosos.
 - Circuit simplificat de la sang amb ritme cardíac ajustable.
 - Joc de relacions sobre cervell i emocions.
 - Creador de capes pròpies amb punts, explicacions i exportació/importació JSON.
@@ -19,7 +21,7 @@ Puja tots els fitxers d’aquesta carpeta a l’arrel de la branca `main`, inclo
 
 ## Contingut
 
-Les il·lustracions dels personatges s’han generat expressament per a aquesta app. Les capes anatòmiques i els circuits són esquemes adaptats a primària. Consulta [Fonts i crèdits](./credits.html) per veure les referències científiques.
+Les il·lustracions dels personatges s’han generat expressament per a aquesta app. Les figures es mostren de la mateixa mida per facilitar el joc: això no representa les alçades reals de cada edat. Les capes anatòmiques i els circuits són esquemes adaptats a primària, no làmines d’anatomia detallada. Consulta [Fonts i crèdits](./credits.html) per veure les referències científiques.
 
 ## Llicència
 

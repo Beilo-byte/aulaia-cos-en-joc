@@ -4,14 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#184d77">
-  <meta name="description" content="Descobreix el cos humà jugant: pistes, músculs, circulació, emocions i capes creades per tu.">
+  <meta name="description" content="Descobreix el cos humà jugant: cos, músculs, ossos, circulació i nervis.">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
   <link rel="apple-touch-icon" href="./icons/icon-192.png">
-  <link rel="stylesheet" href="./styles.css?v=8">
+  <link rel="stylesheet" href="./styles.css?v=9">
+  <link rel="stylesheet" href="./layout.css?v=9">
   <title>Cos en joc · AULAIA</title>
 </head>
-<body data-mode="tickle">
+<body class="app-page" data-mode="tickle">
   <a class="skip-link" href="#main">Salta al contingut</a>
   <header class="site-header">
     <div class="brand" aria-label="AULAIA, Cos en joc">
@@ -19,42 +20,31 @@
       <span class="brand-text"><strong>AULAIA</strong><small>Cos en joc</small></span>
     </div>
     <nav class="top-nav" aria-label="Activitats">
-      <button class="nav-button is-active" type="button" data-mode="tickle" aria-current="page">Pessigolles</button>
+      <button class="nav-button is-active" type="button" data-mode="tickle" aria-current="page">Cos</button>
       <button class="nav-button" type="button" data-mode="muscles">Músculs</button>
-      <button class="nav-button" type="button" data-mode="circulation">Circulació</button>
-      <button class="nav-button" type="button" data-mode="emotions">Emocions</button>
-      <button class="nav-button" type="button" data-mode="layers">Capes</button>
+      <button class="nav-button" type="button" data-mode="bones">Ossos</button>
+      <button class="nav-button" type="button" data-mode="circulation">Venes i artèries</button>
+      <button class="nav-button" type="button" data-mode="nerves">Nervis</button>
     </nav>
+    <details class="more-menu"><summary>Més</summary><div class="more-menu-popover"><button class="nav-button" type="button" data-mode="emotions">Cervell i emocions</button><button class="nav-button" type="button" data-mode="layers">Capes creades per mi</button></div></details>
     <button id="installButton" class="install-button" type="button" hidden>Instal·la l’app ↗</button>
   </header>
 
   <main id="main">
-    <section class="hero" aria-label="Presentació">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="sparkle">✦</span> EXPLORA · PROVA · DESCOBREIX</div>
-        <h1>El cos és una <em>aventura!</em></h1>
-        <p>Fes pessigolles al lloc correcte, descobreix com et mous i segueix el viatge de la sang. Cada pista t’ensenya una cosa nova.</p>
-      </div>
-      <div class="hero-doodles" aria-hidden="true"><span>◌</span><span>✳</span><span>⌁</span></div>
-    </section>
+    <h1 class="sr-only">Cos en joc · AULAIA</h1>
 
     <div class="app-layout">
       <section class="figure-card" aria-labelledby="figureTitle">
-        <div class="card-topline"><span class="mini-label">PERSONATGES PER EXPLORAR</span><span id="layerBadge" class="layer-badge">Parts del cos</span></div>
-        <div class="figure-title-row"><h2 id="figureTitle">Explora el cos</h2><span class="figure-speech" id="figureSpeech" aria-live="polite">Hola! 👋</span></div>
-        <div class="person-picker" role="group" aria-label="Tria el cos que vols explorar">
-          <span class="person-picker-label">TRIA UN COS PER EXPLORAR</span>
-          <button class="person-option is-active" type="button" data-person="nen" aria-pressed="true">Nen</button>
-          <button class="person-option" type="button" data-person="nena" aria-pressed="false">Nena</button>
-          <button class="person-option" type="button" data-person="adolescent" aria-pressed="false">Adolescent</button>
-          <button class="person-option" type="button" data-person="home" aria-pressed="false">Home</button>
-          <button class="person-option" type="button" data-person="dona" aria-pressed="false">Dona</button>
+        <h2 id="figureTitle" class="sr-only">Explora el cos</h2>
+        <span class="sr-only" id="figureSpeech" aria-live="polite">Hola! 👋</span>
+        <div class="figure-toolbar">
+          <div class="figure-toolbar-start"><span id="layerBadge" class="layer-badge">Cos</span><button id="turnButton" class="round-action" type="button" aria-label="Gira el personatge">↺ <span>Gira</span></button><span id="viewLabel" class="view-label">Nen · davant</span></div>
+          <label class="person-picker" for="personSelect"><span class="sr-only">Tria personatge i edat</span><select id="personSelect" aria-label="Tria personatge i edat"><optgroup label="En Nil: nen i home"><option value="nen">Nil · nen</option><option value="home">Nil · adult</option></optgroup><optgroup label="La Nia: nena, adolescent i dona"><option value="nena">Nia · nena</option><option value="adolescent">Nia · adolescent</option><option value="dona">Nia · adulta</option></optgroup></select></label>
         </div>
-        <div class="mobile-prompt" id="mobilePrompt"><div class="mobile-prompt-head"><span>PISTA PER TOCAR</span><button id="mobileExtraHintButton" type="button">＋ pista</button></div><p id="mobileClueText"></p><div id="mobileClueFeedback" class="mobile-feedback" role="status" aria-live="polite"></div><button id="mobileNextClueButton" class="mobile-next" type="button">Una altra descoberta →</button></div>
         <div class="body-stage" id="bodyStage" data-layer="body" data-view="front">
           <div class="stage-orbit orbit-one" aria-hidden="true"></div>
           <div class="stage-orbit orbit-two" aria-hidden="true"></div>
-          <svg id="bodySvg" class="body-svg" viewBox="0 0 420 610" role="img" aria-labelledby="svgTitle svgDesc">
+          <svg id="bodySvg" class="body-svg" viewBox="0 0 420 610" role="group" aria-labelledby="svgTitle svgDesc">
             <title id="svgTitle">Personatge del cos humà</title>
             <desc id="svgDesc">Toca una zona del personatge per respondre a la pista. Pots girar-lo per veure l’esquena.</desc>
             <defs>
@@ -81,23 +71,181 @@
                 <g class="blood-motion"><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M166 549 C170 430 185 297 203 198"/></circle><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M203 198 C182 182 180 161 190 150"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M229 151 C240 168 230 189 218 200"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M218 200 C235 310 250 440 249 549"/></circle></g>
               </g>
               <g class="brain-overlay" aria-hidden="true"><path d="M177 61 Q172 41 191 38 Q201 30 211 36 Q225 31 235 44 Q248 48 244 64 Q252 78 236 87 Q230 100 214 94 Q201 101 188 91 Q172 88 176 73 Z" fill="#ed8e9e" stroke="#ae5c70" stroke-width="2"/><path d="M210 37 Q207 53 212 65 Q207 79 214 93 M185 56 Q198 53 198 68 M228 50 Q221 62 232 73" fill="none" stroke="#ae5c70" stroke-width="2" stroke-linecap="round"/></g>
+              <g class="bones-overlay" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">
+                <g class="bone-skull" fill="#fff7e5" stroke="#66849b" stroke-width="2.6">
+                  <path d="M176 69 Q176 35 210 31 Q244 35 244 69 L240 91 Q237 110 223 119 L197 119 Q183 110 180 91 Z"/>
+                  <path d="M188 104 Q210 119 232 104 L228 124 Q210 137 192 124 Z"/>
+                </g>
+                <g class="bone-spine" fill="#fff7e5" stroke="#66849b" stroke-width="2">
+                  <path d="M210 135 C209 184 209 270 210 335" fill="none" stroke="#d6e3e9" stroke-width="13"/>
+                  <path d="M210 135 C209 184 209 270 210 335" fill="none" stroke="#6d899e" stroke-width="2"/>
+                  <rect x="202" y="145" width="16" height="11" rx="4"/><rect x="202" y="160" width="16" height="11" rx="4"/>
+                  <rect x="202" y="175" width="16" height="11" rx="4"/><rect x="202" y="190" width="16" height="11" rx="4"/>
+                  <rect x="202" y="205" width="16" height="11" rx="4"/><rect x="202" y="220" width="16" height="11" rx="4"/>
+                  <rect x="202" y="235" width="16" height="11" rx="4"/><rect x="202" y="250" width="16" height="11" rx="4"/>
+                  <rect x="202" y="265" width="16" height="11" rx="4"/><rect x="202" y="280" width="16" height="11" rx="4"/>
+                  <rect x="202" y="295" width="16" height="11" rx="4"/><rect x="202" y="310" width="16" height="11" rx="4"/>
+                </g>
+                <g class="bone-ribs" fill="none" stroke="#fff7e5" stroke-width="10">
+                  <path d="M209 182 Q183 168 166 186 Q165 203 203 206 M211 182 Q237 168 254 186 Q255 203 217 206"/>
+                  <path d="M209 202 Q180 188 162 205 Q161 223 203 226 M211 202 Q240 188 258 205 Q259 223 217 226"/>
+                  <path d="M209 222 Q182 211 166 225 Q166 242 203 247 M211 222 Q238 211 254 225 Q254 242 217 247"/>
+                  <path d="M209 242 Q185 234 171 246 Q173 259 204 266 M211 242 Q235 234 249 246 Q247 259 216 266"/>
+                </g>
+                <g class="bone-ribs" fill="none" stroke="#66849b" stroke-width="2.2">
+                  <path d="M209 182 Q183 168 166 186 Q165 203 203 206 M211 182 Q237 168 254 186 Q255 203 217 206"/>
+                  <path d="M209 202 Q180 188 162 205 Q161 223 203 226 M211 202 Q240 188 258 205 Q259 223 217 226"/>
+                  <path d="M209 222 Q182 211 166 225 Q166 242 203 247 M211 222 Q238 211 254 225 Q254 242 217 247"/>
+                  <path d="M209 242 Q185 234 171 246 Q173 259 204 266 M211 242 Q235 234 249 246 Q247 259 216 266"/>
+                  <path d="M210 178 L210 264"/>
+                </g>
+                <g class="bone-arms" fill="none" stroke="#fff7e5" stroke-width="11">
+                  <path d="M204 170 Q180 164 160 174 M216 170 Q240 164 260 174"/>
+                  <path d="M156 182 L129 260 M264 182 L291 260"/>
+                  <path d="M129 264 L105 327 M135 265 L114 330 M291 264 L315 327 M285 265 L306 330"/>
+                </g>
+                <g class="bone-arms" fill="none" stroke="#66849b" stroke-width="2.3">
+                  <path d="M204 170 Q180 164 160 174 M216 170 Q240 164 260 174 M156 182 L129 260 M264 182 L291 260"/>
+                  <path d="M129 264 L105 327 M135 265 L114 330 M291 264 L315 327 M285 265 L306 330"/>
+                </g>
+                <g class="bone-pelvis" fill="#fff7e5" stroke="#66849b" stroke-width="2.5">
+                  <path d="M174 313 Q192 324 210 317 Q228 324 246 313 L256 332 Q241 346 229 354 L210 343 L191 354 Q179 346 164 332 Z"/>
+                  <path d="M197 336 Q210 341 223 336 L210 358 Z"/>
+                </g>
+                <g class="bone-legs" fill="none" stroke="#fff7e5" stroke-width="14">
+                  <path d="M191 356 L181 437 M229 356 L241 437"/>
+                  <path d="M181 444 L177 545 M187 444 L187 544 M241 444 L247 545 M235 444 L237 544"/>
+                </g>
+                <g class="bone-legs" fill="none" stroke="#66849b" stroke-width="2.5">
+                  <path d="M191 356 L181 437 M229 356 L241 437 M181 444 L177 545 M187 444 L187 544 M241 444 L247 545 M235 444 L237 544"/>
+                </g>
+                <g fill="#fff7e5" stroke="#66849b" stroke-width="2">
+                  <circle cx="129" cy="261" r="7"/><circle cx="291" cy="261" r="7"/>
+                  <circle cx="181" cy="440" r="8"/><circle cx="241" cy="440" r="8"/>
+                </g>
+              </g>
+              <g class="nerves-overlay" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path class="nerve-brain" d="M182 57 Q179 44 192 40 Q202 31 211 39 Q223 33 232 43 Q244 45 240 58 Q248 71 237 78 Q233 90 219 88 Q209 95 199 87 Q185 91 181 76 Q174 69 182 57 Z" fill="#ffe2a0" stroke="#a97722" stroke-width="2.5"/>
+                <path class="nerve-brain-detail" d="M209 39 Q203 54 211 63 Q205 77 212 88 M191 56 Q201 54 201 64 M229 51 Q219 62 229 73" stroke="#b78124" stroke-width="2"/>
+                <path class="nerve-halo" d="M210 89 C209 146 210 247 210 334" stroke="#fff6d8" stroke-width="13"/>
+                <path class="nerve-spinal-cord" d="M210 89 C209 146 210 247 210 334" stroke="#e5ac39" stroke-width="5"/>
+                <g class="nerve-network" stroke="#fff6d8" stroke-width="9">
+                  <path d="M210 168 Q179 166 156 187 C140 211 132 244 127 267 C115 299 105 320 95 341"/>
+                  <path d="M210 168 Q241 166 264 187 C280 211 288 244 293 267 C305 299 315 320 325 341"/>
+                  <path d="M210 312 Q188 332 184 370 C179 414 181 471 178 549"/>
+                  <path d="M210 312 Q232 332 236 370 C241 414 239 471 242 549"/>
+                  <path d="M190 230 Q177 241 165 256 M230 230 Q243 241 255 256"/>
+                </g>
+                <g class="nerve-network" stroke="#e5ac39" stroke-width="3.7">
+                  <path d="M210 168 Q179 166 156 187 C140 211 132 244 127 267 C115 299 105 320 95 341"/>
+                  <path d="M210 168 Q241 166 264 187 C280 211 288 244 293 267 C305 299 315 320 325 341"/>
+                  <path d="M210 312 Q188 332 184 370 C179 414 181 471 178 549"/>
+                  <path d="M210 312 Q232 332 236 370 C241 414 239 471 242 549"/>
+                  <path d="M190 230 Q177 241 165 256 M230 230 Q243 241 255 256"/>
+                </g>
+                <g class="nerve-nodes" fill="#ffcc54" stroke="#a97722" stroke-width="1.7">
+                  <circle cx="210" cy="88" r="5"/><circle cx="210" cy="168" r="5"/><circle cx="210" cy="312" r="5"/>
+                  <circle cx="95" cy="341" r="5"/><circle cx="325" cy="341" r="5"/>
+                  <circle cx="178" cy="549" r="5"/><circle cx="242" cy="549" r="5"/>
+                </g>
+                <g class="nerve-route nerve-sensory-route" stroke="#f68c3d" stroke-width="7">
+                  <path d="M325 341 C315 320 305 299 293 267 C288 244 280 211 264 187 Q241 166 210 168 C209 147 210 111 210 88"/>
+                </g>
+                <g class="nerve-route nerve-motor-route" stroke="#f68c3d" stroke-width="7">
+                  <path d="M210 88 C210 111 209 147 210 168 Q241 166 264 187 C280 211 288 244 293 267 C305 299 315 320 325 341"/>
+                </g>
+              </g>
             </g>
             <g id="backArt" class="view-art" aria-hidden="true">
               <svg class="character-frame" x="0" y="0" width="420" height="610" viewBox="768 0 768 1024" preserveAspectRatio="none"><image id="backCharacter" class="character-art" href="./characters/nen.webp" x="0" y="0" width="1536" height="1024" preserveAspectRatio="none"/></svg>
               <g class="muscle-overlay" aria-hidden="true"><path class="muscle-shape muscle-trapezius" d="M184 142 Q208 166 236 142 L258 188 L212 218 L162 188Z"/><path class="muscle-shape muscle-triceps" d="M137 196 L155 212 L130 269 L113 258Z M283 196 L265 212 L290 269 L307 258Z"/><path class="muscle-shape muscle-glutes" d="M164 331 Q186 322 208 339 L207 391 Q183 395 164 377Z M212 339 Q234 322 256 331 L256 377 Q237 395 213 391Z"/><path class="muscle-shape muscle-calves" d="M164 460 Q177 455 192 461 L188 539 L165 539Z M228 461 Q243 455 256 460 L255 539 L232 539Z"/></g>
               <g class="circulation-overlay" aria-hidden="true"><path class="vessel vessel-red" d="M218 198 C225 168 228 145 231 120 M218 198 C252 197 296 225 313 279 L338 344 M218 200 C202 254 181 323 174 394 L173 549 M218 200 C235 253 247 321 249 394 L249 549 M214 200 C180 196 131 220 111 278 L82 344"/><path class="vessel vessel-blue" d="M203 198 C195 169 192 145 190 120 M203 198 C169 197 122 220 108 278 L78 344 M203 200 C190 250 169 321 167 394 L166 549 M203 200 C219 251 238 321 241 394 L242 549 M206 200 C244 202 295 225 312 278 L341 344"/><path d="M210 199 C194 178 183 202 210 223 C237 202 226 178 210 199Z" fill="#ea6a65" stroke="#af494b" stroke-width="2"/><g class="blood-motion"><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M166 549 C170 430 185 297 203 198"/></circle><circle r="5" fill="#4f82c3"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M203 198 C182 182 180 161 190 150"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M229 151 C240 168 230 189 218 200"/></circle><circle r="5" fill="#ef6d68"><animateMotion class="flow-particle" dur="1.2s" repeatCount="indefinite" path="M218 200 C235 310 250 440 249 549"/></circle></g></g>
+              <g class="bones-overlay" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">
+                <g class="bone-skull" fill="#fff7e5" stroke="#66849b" stroke-width="2.6">
+                  <path d="M176 68 Q176 35 210 31 Q244 35 244 68 Q244 103 226 121 L194 121 Q176 103 176 68 Z"/>
+                </g>
+                <g class="bone-ribs" fill="none" stroke="#fff7e5" stroke-width="11">
+                  <path d="M207 179 Q177 169 165 190 Q171 209 204 215 M213 179 Q243 169 255 190 Q249 209 216 215"/>
+                  <path d="M207 204 Q176 196 164 215 Q173 230 204 238 M213 204 Q244 196 256 215 Q247 230 216 238"/>
+                  <path d="M207 228 Q181 225 169 238 Q178 252 205 261 M213 228 Q239 225 251 238 Q242 252 215 261"/>
+                </g>
+                <g class="bone-ribs" fill="none" stroke="#66849b" stroke-width="2.2">
+                  <path d="M207 179 Q177 169 165 190 Q171 209 204 215 M213 179 Q243 169 255 190 Q249 209 216 215"/>
+                  <path d="M207 204 Q176 196 164 215 Q173 230 204 238 M213 204 Q244 196 256 215 Q247 230 216 238"/>
+                  <path d="M207 228 Q181 225 169 238 Q178 252 205 261 M213 228 Q239 225 251 238 Q242 252 215 261"/>
+                </g>
+                <g class="bone-scapulae" fill="#fff7e5" stroke="#66849b" stroke-width="2.2">
+                  <path d="M171 179 L196 190 L179 226 Q163 215 171 179 Z"/>
+                  <path d="M249 179 L224 190 L241 226 Q257 215 249 179 Z"/>
+                </g>
+                <g class="bone-spine" fill="#fff7e5" stroke="#66849b" stroke-width="2">
+                  <path d="M210 137 L210 334" fill="none" stroke="#d6e3e9" stroke-width="13"/>
+                  <path d="M210 137 L210 334" fill="none" stroke="#6d899e" stroke-width="2"/>
+                  <rect x="202" y="145" width="16" height="11" rx="4"/><rect x="202" y="161" width="16" height="11" rx="4"/>
+                  <rect x="202" y="177" width="16" height="11" rx="4"/><rect x="202" y="193" width="16" height="11" rx="4"/>
+                  <rect x="202" y="209" width="16" height="11" rx="4"/><rect x="202" y="225" width="16" height="11" rx="4"/>
+                  <rect x="202" y="241" width="16" height="11" rx="4"/><rect x="202" y="257" width="16" height="11" rx="4"/>
+                  <rect x="202" y="273" width="16" height="11" rx="4"/><rect x="202" y="289" width="16" height="11" rx="4"/>
+                  <rect x="202" y="305" width="16" height="11" rx="4"/><rect x="202" y="321" width="16" height="11" rx="4"/>
+                </g>
+                <g class="bone-arms" fill="none" stroke="#fff7e5" stroke-width="11">
+                  <path d="M156 181 L129 260 M264 181 L291 260 M129 265 L105 328 M135 265 L114 328 M291 265 L315 328 M285 265 L306 328"/>
+                </g>
+                <g class="bone-arms" fill="none" stroke="#66849b" stroke-width="2.3">
+                  <path d="M156 181 L129 260 M264 181 L291 260 M129 265 L105 328 M135 265 L114 328 M291 265 L315 328 M285 265 L306 328"/>
+                </g>
+                <g class="bone-pelvis" fill="#fff7e5" stroke="#66849b" stroke-width="2.5">
+                  <path d="M172 318 Q190 325 210 319 Q230 325 248 318 L254 337 Q235 352 210 349 Q185 352 166 337 Z"/>
+                </g>
+                <g class="bone-legs" fill="none" stroke="#fff7e5" stroke-width="14">
+                  <path d="M190 351 L181 438 M230 351 L241 438 M181 446 L177 545 M187 446 L187 544 M241 446 L247 545 M235 446 L237 544"/>
+                </g>
+                <g class="bone-legs" fill="none" stroke="#66849b" stroke-width="2.5">
+                  <path d="M190 351 L181 438 M230 351 L241 438 M181 446 L177 545 M187 446 L187 544 M241 446 L247 545 M235 446 L237 544"/>
+                </g>
+                <g fill="#fff7e5" stroke="#66849b" stroke-width="2">
+                  <circle cx="129" cy="261" r="7"/><circle cx="291" cy="261" r="7"/>
+                  <circle cx="181" cy="442" r="8"/><circle cx="241" cy="442" r="8"/>
+                </g>
+              </g>
+              <g class="nerves-overlay" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path class="nerve-brain" d="M182 57 Q179 44 192 40 Q202 31 211 39 Q223 33 232 43 Q244 45 240 58 Q248 71 237 78 Q233 90 219 88 Q209 95 199 87 Q185 91 181 76 Q174 69 182 57 Z" fill="#ffe2a0" stroke="#a97722" stroke-width="2.5"/>
+                <path class="nerve-brain-detail" d="M209 39 Q203 54 211 63 Q205 77 212 88 M191 56 Q201 54 201 64 M229 51 Q219 62 229 73" stroke="#b78124" stroke-width="2"/>
+                <path class="nerve-halo" d="M210 89 C209 146 210 247 210 334" stroke="#fff6d8" stroke-width="13"/>
+                <path class="nerve-spinal-cord" d="M210 89 C209 146 210 247 210 334" stroke="#e5ac39" stroke-width="5"/>
+                <g class="nerve-network" stroke="#fff6d8" stroke-width="9">
+                  <path d="M210 168 Q179 166 156 187 C140 211 132 244 127 267 C115 299 105 320 95 341"/>
+                  <path d="M210 168 Q241 166 264 187 C280 211 288 244 293 267 C305 299 315 320 325 341"/>
+                  <path d="M210 312 Q188 332 184 370 C179 414 181 471 178 549"/>
+                  <path d="M210 312 Q232 332 236 370 C241 414 239 471 242 549"/>
+                  <path d="M190 230 Q177 241 165 256 M230 230 Q243 241 255 256"/>
+                </g>
+                <g class="nerve-network" stroke="#e5ac39" stroke-width="3.7">
+                  <path d="M210 168 Q179 166 156 187 C140 211 132 244 127 267 C115 299 105 320 95 341"/>
+                  <path d="M210 168 Q241 166 264 187 C280 211 288 244 293 267 C305 299 315 320 325 341"/>
+                  <path d="M210 312 Q188 332 184 370 C179 414 181 471 178 549"/>
+                  <path d="M210 312 Q232 332 236 370 C241 414 239 471 242 549"/>
+                  <path d="M190 230 Q177 241 165 256 M230 230 Q243 241 255 256"/>
+                </g>
+                <g class="nerve-nodes" fill="#ffcc54" stroke="#a97722" stroke-width="1.7">
+                  <circle cx="210" cy="88" r="5"/><circle cx="210" cy="168" r="5"/><circle cx="210" cy="312" r="5"/>
+                  <circle cx="95" cy="341" r="5"/><circle cx="325" cy="341" r="5"/>
+                  <circle cx="178" cy="549" r="5"/><circle cx="242" cy="549" r="5"/>
+                </g>
+                <g class="nerve-route nerve-sensory-route" stroke="#f68c3d" stroke-width="7">
+                  <path d="M325 341 C315 320 305 299 293 267 C288 244 280 211 264 187 Q241 166 210 168 C209 147 210 111 210 88"/>
+                </g>
+                <g class="nerve-route nerve-motor-route" stroke="#f68c3d" stroke-width="7">
+                  <path d="M210 88 C210 111 209 147 210 168 Q241 166 264 187 C280 211 288 244 293 267 C305 299 315 320 325 341"/>
+                </g>
+              </g>
             </g>
             <g id="customMarkers" aria-hidden="true"></g>
             <g id="hotspots"></g>
           </svg>
           <div class="tickle-pop" aria-hidden="true">He-he! ✨</div>
         </div>
-        <div class="figure-footer">
-          <button id="turnButton" class="round-action" type="button" aria-label="Gira el personatge">↺ <span>Gira’l</span></button>
-          <span id="viewLabel" class="view-label">Nen · davant</span>
-          <span class="figure-hint">Toca, clica o prem Retorn</span>
-        </div>
-        <details class="accessible-zones"><summary>Tria una zona de la llista</summary><div id="zoneButtons" class="zone-buttons"></div></details>
+        <details class="accessible-zones"><summary>Ajuda per tocar ▾</summary><div id="zoneButtons" class="zone-buttons"></div></details>
       </section>
 
       <div class="activity-column">
@@ -123,18 +271,39 @@
           <p class="tiny-note">Parlem dels músculs principals d’aquest gest; el cos en fa treballar molts més.</p>
         </section>
 
+        <section id="bonesPanel" class="activity-panel" data-panel="bones" aria-labelledby="bonesTitle" hidden>
+          <div class="activity-kicker"><span class="number-pill">03</span> ELS OSSOS</div>
+          <h2 id="bonesTitle">Un esquelet que ajuda</h2>
+          <p class="panel-lead">Els ossos ens sostenen, protegeixen òrgans i treballen amb els músculs per moure’ns.</p>
+          <div class="clue-card"><div class="clue-icon" aria-hidden="true">?</div><div><span class="clue-label">TOCA L’OS</span><p id="boneQuestion"></p></div></div>
+          <div id="boneFeedback" class="feedback" role="status" aria-live="polite">Toca la figura. Pots girar-la per veure la columna.</div>
+          <div class="panel-actions"><button id="boneHintButton" class="secondary-button" type="button">Una pista</button><button id="nextBoneButton" class="primary-button" type="button">Una altra pregunta →</button></div>
+          <details class="learn-more"><summary>Per què tenim ossos?</summary><p>El crani protegeix el cervell, les costelles formen una gàbia flexible i la columna ajuda a sostenir el tronc. És un esquema simplificat.</p></details>
+        </section>
+
         <section id="circulationPanel" class="activity-panel" data-panel="circulation" aria-labelledby="circulationTitle" hidden>
-          <div class="activity-kicker"><span class="number-pill">03</span> EL VIATGE DE LA SANG</div>
+          <div class="activity-kicker"><span class="number-pill">04</span> VENES I ARTÈRIES</div>
           <h2 id="circulationTitle">Un circuit que no s’atura</h2>
           <p class="panel-lead">El cor empeny la sang cap als pulmons i cap a tot el cos. Mou el control per veure com canvia el ritme dels batecs.</p>
           <div class="heart-control"><div class="heart-pulse" aria-hidden="true">♥</div><div class="rate-readout"><strong><span id="bpmValue">90</span> <small>bpm</small></strong><span>batecs per minut</span></div><input id="bpmSlider" type="range" min="60" max="150" value="90" step="5" aria-label="Batecs per minut"><div class="slider-labels"><span>més tranquil</span><span>més ràpid</span></div></div>
-          <div class="flow-card" aria-label="Camí simplificat de la sang"><div class="flow-line flow-blue"><span>Cos</span><b>→</b><span>Venes</span><b>→</b><span>Cor dret</span><b>→</b><span>Artèria pulmonar</span><b>→</b><span>Pulmons</span></div><div class="flow-line flow-red"><span>Pulmons</span><b>→</b><span>Venes pulmonars</span><b>→</b><span>Cor esquerre</span><b>→</b><span>Artèries</span><b>→</b><span>Cos</span></div></div>
+          <details class="learn-more"><summary>Segueix el recorregut de la sang</summary><div class="flow-card" aria-label="Camí simplificat de la sang"><div class="flow-line flow-blue"><span>Cos</span><b>→</b><span>Venes</span><b>→</b><span>Cor dret</span><b>→</b><span>Artèria pulmonar</span><b>→</b><span>Pulmons</span></div><div class="flow-line flow-red"><span>Pulmons</span><b>→</b><span>Venes pulmonars</span><b>→</b><span>Cor esquerre</span><b>→</b><span>Artèries</span><b>→</b><span>Cos</span></div></div></details>
           <div class="fact-box"><strong>Sabies que…?</strong><p id="bpmFact">El cor batega una vegada i una altra. Si el ritme canvia, el recorregut de la sang continua sent el mateix.</p></div>
           <p class="tiny-note">Les artèries surten del cor i les venes hi tornen. El blau i el vermell són colors d’un esquema: la sang no és blava. El control és una simulació, no una mesura del teu pols.</p>
         </section>
 
+        <section id="nervesPanel" class="activity-panel" data-panel="nerves" aria-labelledby="nervesTitle" hidden>
+          <div class="activity-kicker"><span class="number-pill">05</span> ELS NERVIS</div>
+          <h2 id="nervesTitle">Missatges que viatgen</h2>
+          <p class="panel-lead">Els nervis comuniquen el cos amb el cervell i la medul·la espinal. Segueix la direcció del missatge.</p>
+          <div class="clue-card"><div class="clue-icon" aria-hidden="true">✦</div><div><span class="clue-label">QUIN CAMÍ?</span><p id="nerveQuestion"></p></div></div>
+          <div id="nerveChoices" class="nerve-choices" role="group" aria-label="Tria el camí del missatge"></div>
+          <div id="nerveFeedback" class="feedback" role="status" aria-live="polite">Tria un camí per veure el missatge.</div>
+          <button id="nextNerveButton" class="primary-button full" type="button">Un altre missatge →</button>
+          <details class="learn-more"><summary>Com ho sabem?</summary><p>Els nervis sensitius porten informació cap al cervell i la medul·la. Els nervis motors porten ordres cap als músculs. El dibuix és un esquema simplificat.</p></details>
+        </section>
+
         <section id="emotionsPanel" class="activity-panel" data-panel="emotions" aria-labelledby="emotionsTitle" hidden>
-          <div class="activity-kicker"><span class="number-pill">04</span> CERVELL I EMOCIONS</div>
+          <div class="activity-kicker"><span class="number-pill">06</span> CERVELL I EMOCIONS</div>
           <h2 id="emotionsTitle">Un soroll al pati! Què passa?</h2>
           <p class="panel-lead">Cau una pilota i fa un soroll fort. Diverses parts del cervell comparteixen informació. Relaciona cada pista amb la seva tasca.</p>
           <div class="brain-situation"><span aria-hidden="true">💥</span><span>«PAM!» Una pilota ha caigut darrere teu.</span></div>
@@ -145,7 +314,7 @@
         </section>
 
         <section id="layersPanel" class="activity-panel" data-panel="layers" aria-labelledby="layersTitle" hidden>
-          <div class="activity-kicker"><span class="number-pill">05</span> EL TEU LABORATORI</div>
+          <div class="activity-kicker"><span class="number-pill">07</span> EL TEU LABORATORI</div>
           <h2 id="layersTitle">Mira el cos per capes</h2>
           <p class="panel-lead">Cada capa és una manera de mirar el mateix cos. També pots inventar-ne una i posar-hi punts d’aprenentatge.</p>
           <div id="layerList" class="layer-list"></div>
@@ -157,7 +326,7 @@
       </div>
     </div>
   </main>
-  <footer class="site-footer"><span><strong>AULAIA</strong> · Aprendre és explorar</span><span>Fet per jugar i conversar a classe · <a href="./credits.html?v=8">Fonts i crèdits</a></span></footer>
-  <script src="./app.js?v=8" defer></script>
+  <footer class="site-footer"><span><strong>AULAIA</strong> · Aprendre és explorar</span><span>Fet per jugar i conversar a classe · <a href="./credits.html?v=9">Fonts i crèdits</a></span></footer>
+  <script src="./app.js?v=9" defer></script>
 </body>
 </html>

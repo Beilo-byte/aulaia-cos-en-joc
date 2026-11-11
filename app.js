@@ -6,11 +6,11 @@
   const storageKey = 'aulaia-cos-en-joc-capes-v1';
   const personStorageKey = 'aulaia-cos-en-joc-personatge-v1';
   const people = {
-    nen: {label:'Nen', image:'./characters/nen.webp'},
-    nena: {label:'Nena', image:'./characters/nena.webp'},
-    adolescent: {label:'Adolescent', image:'./characters/adolescent.webp'},
-    home: {label:'Home', image:'./characters/home.webp'},
-    dona: {label:'Dona', image:'./characters/dona.webp'}
+    nen: {label:'Nil · nen', image:'./characters/nen.webp', muscleImage:'./characters/muscles/nen.webp'},
+    nena: {label:'Nia · nena', image:'./characters/nena.webp', muscleImage:'./characters/muscles/nena.webp'},
+    adolescent: {label:'Nia · adolescent', image:'./characters/adolescent.webp', muscleImage:'./characters/muscles/adolescent.webp'},
+    home: {label:'Nil · adult', image:'./characters/home.webp', muscleImage:'./characters/muscles/home.webp'},
+    dona: {label:'Nia · adulta', image:'./characters/dona.webp', muscleImage:'./characters/muscles/dona.webp'}
   };
   const zones = [
     {id:'eyes', label:'ulls', view:'front', x:210, y:94, rx:30, ry:11, fact:'Els ulls capten la llum; el cervell interpreta allò que veiem.'},
@@ -30,11 +30,11 @@
     {id:'calf', label:'panxell', view:'back', x:262, y:504, rx:26, ry:36, fact:'Els músculs del panxell ajuden a posar-nos de puntetes.'}
   ];
   const personZoneAdjustments = {
-    nen: {},
-    nena: {eyes:[0,-4],ear:[0,-4],nose:[0,-4],mouth:[0,-4],neck:[0,-4],shoulder:[4,-3],hand:[-2,0],knee:[0,-2]},
-    adolescent: {eyes:[0,-22],ear:[0,-20],nose:[0,-21],mouth:[0,-20],neck:[0,-20],shoulder:[5,-24],elbow:[5,-13],hand:[4,-10],chest:[0,-25],belly:[0,-25],knee:[0,-9],back:[0,-24]},
-    home: {eyes:[0,-28],ear:[0,-26],nose:[0,-27],mouth:[0,-27],neck:[0,-26],shoulder:[7,-35],elbow:[8,-18],hand:[8,-14],chest:[0,-36],belly:[0,-37],knee:[0,-13],back:[0,-34]},
-    dona: {eyes:[0,-25],ear:[0,-24],nose:[0,-24],mouth:[0,-23],neck:[0,-24],shoulder:[4,-32],elbow:[5,-15],hand:[5,-12],chest:[0,-33],belly:[0,-32],knee:[0,-13],back:[0,-31]}
+    nen: {eyes:[20,0],ear:[20,0],nose:[20,-1],mouth:[20,-5],neck:[20,7],shoulder:[2,1],elbow:[-2,12],hand:[-1,0],chest:[20,1],belly:[20,-1],knee:[0,-8],back:[-20,1],glutes:[-20,0],calf:[-28,-24]},
+    nena: {eyes:[9,1],ear:[7,-3],nose:[9,-3],mouth:[9,-5],neck:[9,11],shoulder:[-12,1],elbow:[-18,9],hand:[-17,-2],chest:[0,1],belly:[0,-5],knee:[-15,-14],foot:[-7,0],back:[0,-1],glutes:[0,-2],calf:[-21,-25]},
+    adolescent: {eyes:[9,-30],ear:[8,-31],nose:[9,-37],mouth:[9,-42],neck:[9,-38],shoulder:[-12,-28],elbow:[-25,-15],hand:[-30,-18],chest:[0,-38],belly:[0,-40],knee:[-11,-34],foot:[-9,0],back:[-20,-36],glutes:[-20,-44],calf:[-27,-29]},
+    home: {eyes:[14,-35],ear:[14,-36],nose:[14,-42],mouth:[14,-46],neck:[14,-40],shoulder:[6,-35],elbow:[-1,0],hand:[1,-13],chest:[0,-30],belly:[0,-29],knee:[-2,-2],back:[-20,-31],glutes:[-20,-9],calf:[-29,-27]},
+    dona: {eyes:[9,-39],ear:[8,-39],nose:[9,-44],mouth:[9,-49],neck:[9,-37],shoulder:[-9,-31],elbow:[-17,-14],hand:[-15,-21],chest:[0,-36],belly:[0,-35],knee:[-11,-23],foot:[-8,0],back:[0,-36],glutes:[0,-24],calf:[-29,-27]}
   };
 
   const clues = [
@@ -73,6 +73,30 @@
   ];
   const muscleShapes = {deltoid:'muscle-deltoid', trapezius:'muscle-trapezius', serratus:'muscle-serratus', triceps:'muscle-triceps', biceps:'muscle-biceps', forearm:'muscle-forearm'};
 
+  const boneQuestions = [
+    {id:'skull', label:'crani', view:'front', x:210, y:76, rx:43, ry:50,
+      question:'El cervell té idees tot el dia. Quin escut dur el protegeix encara que no portis casc?',
+      hint:'És a la part més alta del cos.', explanation:'El crani envolta i protegeix el cervell.'},
+    {id:'ribs', label:'costelles', view:'front', x:210, y:220, rx:56, ry:51,
+      question:'Quan inspires, una gàbia d’ossos es mou una mica i ajuda a protegir el cor i els pulmons. On és?',
+      hint:'La trobaràs al pit.', explanation:'Les costelles formen la caixa toràcica, que protegeix el cor i els pulmons.'},
+    {id:'spine', label:'columna vertebral', view:'back', x:210, y:237, rx:25, ry:103,
+      question:'Com una torre de peces petites, ajuda a sostenir el tronc i a girar-lo. Gira la figura i busca-la.',
+      hint:'Recorre el centre de l’esquena.', explanation:'Les vèrtebres formen la columna vertebral. Sostenen el tronc i protegeixen la medul·la espinal.'},
+    {id:'upperArm', label:'húmer', view:'front', x:286, y:221, rx:24, ry:57,
+      question:'Per alçar el braç cap al pot de galetes, els músculs estiren un os llarg. On el trobaries?',
+      hint:'És entre l’espatlla i el colze.', explanation:'L’húmer és un os llarg del braç. Els músculs s’hi uneixen i ajuden a moure’l.'}
+  ];
+
+  const nerveQuestions = [
+    {id:'sensory', question:'Toques una pilota freda amb els dits. Cap on viatja la notícia abans que sàpigues que és freda?',
+      choices:[['sensoryPath','Dits → nervis → medul·la espinal → cervell'],['bloodPath','Dits → venes → cor → cervell']],
+      correct:'sensoryPath', explanation:'Els nervis sensitius porten informació del tacte cap a la medul·la espinal i el cervell.', routeClass:'nerve-sensory-route'},
+    {id:'motor', question:'Decideixes deixar anar la pilota. Quin camí segueix l’ordre fins als músculs de la mà?',
+      choices:[['motorPath','Cervell → medul·la espinal → nervis → músculs de la mà'],['reversePath','Músculs de la mà → venes → cor → cervell']],
+      correct:'motorPath', explanation:'Els nervis motors porten ordres del cervell i la medul·la als músculs, que fan el moviment.', routeClass:'nerve-motor-route'}
+  ];
+
   const brainParts = [
     {id:'amygdala', name:'Amígdala', icon:'⚡', answer:'alert', note:'Ajuda a detectar que alguna cosa pot ser important i cal parar-hi atenció.'},
     {id:'hippocampus', name:'Hipocamp', icon:'▣', answer:'memory', note:'Ajuda a formar i recuperar records, com altres sorolls que ja coneixes.'},
@@ -87,7 +111,9 @@
   const baseLayers = [
     {id:'body', name:'Parts del cos', sub:'El que veiem', icon:'✋', description:'Les parts visibles ens ajuden a moure’ns, percebre el món, menjar i mantenir l’equilibri.'},
     {id:'muscles', name:'Músculs', sub:'Com ens movem', icon:'💪', description:'Els músculs treballen en equip per moure ossos i articulacions.'},
+    {id:'bones', name:'Ossos', sub:'Suport i protecció', icon:'◈', description:'Els ossos sostenen el cos, protegeixen òrgans i ens ajuden a moure’ns amb els músculs.'},
     {id:'circulation', name:'Circulació', sub:'El camí de la sang', icon:'♥', description:'El cor, les artèries, les venes i els pulmons formen part del viatge continu de la sang.'},
+    {id:'nerves', name:'Nervis', sub:'Missatges pel cos', icon:'⚡', description:'Els nervis porten informació dels sentits i ordres de moviment entre el cos, la medul·la i el cervell.'},
     {id:'brain', name:'Cervell i emocions', sub:'Pensem i sentim', icon:'✦', description:'Diferents parts del cervell comparteixen informació quan recordem, sentim i triem què fer.'}
   ];
 
@@ -102,6 +128,11 @@
   let clueSolved = false;
   let sessionScore = 0;
   let muscleStep = 0;
+  let boneDeck = [0, ...shuffle(Array.from({length:boneQuestions.length - 1}, (_, i) => i + 1))];
+  let currentBone = null;
+  let boneSolved = false;
+  let nerveIndex = -1;
+  let currentNerve = null;
   let deferredInstall = null;
 
   function shuffle(items) {
@@ -122,18 +153,13 @@
     el.innerHTML = html;
     el.classList.toggle('is-success', type === 'success');
     el.classList.toggle('is-error', type === 'error');
-    if (selector === '#clueFeedback') {
-      const mobile = $('#mobileClueFeedback');
-      mobile.innerHTML = html;
-      mobile.classList.toggle('is-success', type === 'success');
-      mobile.classList.toggle('is-error', type === 'error');
-    }
   }
 
   function setView(next) {
     view = next;
     $('#bodyStage').dataset.view = next;
     $('#viewLabel').textContent = `${people[person].label} · ${next === 'front' ? 'davant' : 'darrere'}`;
+    $('#turnButton').setAttribute('aria-label', `${people[person].label}, vista ${next === 'front' ? 'de davant' : 'de darrere'}. Gira el personatge`);
     $('#backArt').setAttribute('aria-hidden', next !== 'back');
     $('#frontArt').setAttribute('aria-hidden', next !== 'front');
     renderHotspots();
@@ -145,26 +171,28 @@
     return {x:zone.x + dx, y:zone.y + dy};
   }
 
+  function updateCharacterArtwork() {
+    const artwork = $('#bodyStage').dataset.layer === 'muscles' ? people[person].muscleImage : people[person].image;
+    $('#frontCharacter').setAttribute('href', artwork);
+    $('#backCharacter').setAttribute('href', artwork);
+  }
+
   function setPerson(next) {
     if (!people[next]) return;
     person = next;
     $('#bodyStage').dataset.person = next;
-    $('#frontCharacter').setAttribute('href', people[next].image);
-    $('#backCharacter').setAttribute('href', people[next].image);
-    $('#svgTitle').textContent = `Cos humà: ${people[next].label.toLowerCase()}`;
-    document.querySelectorAll('.person-option').forEach(button => {
-      const active = button.dataset.person === next;
-      button.classList.toggle('is-active', active);
-      button.setAttribute('aria-pressed', String(active));
-    });
+    updateCharacterArtwork();
+    $('#svgTitle').textContent = `Cos humà: ${people[next].label}`;
+    $('#personSelect').value = next;
     try { localStorage.setItem(personStorageKey, next); } catch {}
     setView(view);
   }
 
   function setStageLayer(layer) {
     $('#bodyStage').dataset.layer = layer;
-    const names = {body:'Parts del cos', muscles:'Músculs', circulation:'Circulació', brain:'Cervell i emocions', custom:'La teva capa'};
+    const names = {body:'Cos', muscles:'Músculs', bones:'Ossos', circulation:'Venes i artèries', nerves:'Nervis', brain:'Cervell i emocions', custom:'La teva capa'};
     $('#layerBadge').textContent = names[layer] || 'La teva capa';
+    updateCharacterArtwork();
     renderCustomMarkers();
   }
 
@@ -177,12 +205,16 @@
       if (active) button.setAttribute('aria-current', 'page'); else button.removeAttribute('aria-current');
     });
     document.querySelectorAll('.activity-panel').forEach(panel => panel.hidden = panel.dataset.panel !== next);
-    const layer = next === 'muscles' ? 'muscles' : next === 'circulation' ? 'circulation' : next === 'emotions' ? 'brain' : next === 'layers' ? (baseLayers.find(item => item.id === selectedLayer)?.id || 'custom') : 'body';
+    $('.more-menu').open = false;
+    const layer = next === 'muscles' ? 'muscles' : next === 'bones' ? 'bones' : next === 'circulation' ? 'circulation' : next === 'nerves' ? 'nerves' : next === 'emotions' ? 'brain' : next === 'layers' ? (baseLayers.find(item => item.id === selectedLayer)?.id || 'custom') : 'body';
     setStageLayer(layer);
-    if (next === 'circulation' || next === 'emotions' || next === 'muscles') setView('front');
+    if (next === 'circulation' || next === 'emotions' || next === 'muscles' || next === 'bones' || next === 'nerves') setView('front');
+    else renderHotspots();
     if (next === 'tickle') setSpeech('On és? 🤔');
     if (next === 'muscles') setSpeech('Tots en equip! 💪');
+    if (next === 'bones') setSpeech('Ossos en acció! ◈');
     if (next === 'circulation') setSpeech('Bum, bum! ♥');
+    if (next === 'nerves') setSpeech('Missatge en camí! ⚡');
     if (next === 'emotions') setSpeech('Pensem junts ✦');
     if (next === 'layers') { setSpeech('Explora’m! ✳'); renderLayerList(); renderLayerDetail(); }
   }
@@ -198,23 +230,26 @@
     parent.replaceChildren();
     const buttons = $('#zoneButtons');
     buttons.replaceChildren();
-    zones.filter(zone => zone.view === view).forEach(zone => {
-      const point = zonePosition(zone);
+    const useBones = mode === 'bones';
+    const targets = useBones ? boneQuestions : zones;
+    targets.filter(zone => zone.view === view).forEach(zone => {
+      const point = useBones ? {x:zone.x, y:zone.y} : zonePosition(zone);
       const group = svgNode('g', {class:'hotspot', role:'button', tabindex:'0', 'aria-label':`Toca ${zone.label}`, 'data-zone':zone.id});
       group.append(svgNode('ellipse', {class:'hit-ring', cx:point.x, cy:point.y, rx:zone.rx, ry:zone.ry}));
       group.append(svgNode('ellipse', {class:'hit-area', cx:point.x, cy:point.y, rx:zone.rx + 5, ry:zone.ry + 5}));
       const label = svgNode('text', {class:'hotspot-label', x:point.x, y:point.y - zone.ry - 8, 'text-anchor':'middle'});
       label.textContent = zone.label;
       group.append(label);
-      group.addEventListener('click', () => handleZone(zone.id, group));
+      const activate = () => useBones ? handleBone(zone.id, group) : handleZone(zone.id, group);
+      group.addEventListener('click', activate);
       group.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); handleZone(zone.id, group); }
+        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activate(); }
       });
       parent.append(group);
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = zone.label;
-      button.addEventListener('click', () => handleZone(zone.id, group));
+      button.addEventListener('click', activate);
       buttons.append(button);
     });
   }
@@ -244,7 +279,6 @@
       if (correct) {
         clueSolved = true;
         $('#extraHintButton').disabled = true;
-        $('#mobileExtraHintButton').disabled = true;
         sessionScore += 1;
         $('#scorePill').textContent = `${sessionScore} ${sessionScore === 1 ? 'descoberta' : 'descobertes'}`;
         renderProgress();
@@ -295,9 +329,7 @@
     currentClue = clues[clueDeck.shift()];
     clueSolved = false;
     $('#clueText').textContent = currentClue.text;
-    $('#mobileClueText').textContent = currentClue.text;
     $('#extraHintButton').disabled = false;
-    $('#mobileExtraHintButton').disabled = false;
     setFeedback('#clueFeedback', 'Toca una zona del personatge. Si cal, gira’l per mirar-lo per darrere.');
     setSpeech('On és? 🤔');
   }
@@ -306,7 +338,75 @@
     if (clueSolved) return;
     setFeedback('#clueFeedback', `<strong>Una altra pista:</strong> ${currentClue.hint}`);
     $('#extraHintButton').disabled = true;
-    $('#mobileExtraHintButton').disabled = true;
+  }
+
+  function nextBone() {
+    if (boneDeck.length === 0) boneDeck = shuffle(Array.from({length:boneQuestions.length}, (_, i) => i));
+    currentBone = boneQuestions[boneDeck.shift()];
+    boneSolved = false;
+    $('#boneQuestion').textContent = currentBone.question;
+    $('#boneHintButton').disabled = false;
+    setFeedback('#boneFeedback', 'Toca l’os a la figura. Pots girar-la per mirar-la per darrere.');
+    if (mode === 'bones') setView('front');
+  }
+
+  function handleBone(id, element) {
+    const touched = boneQuestions.find(item => item.id === id);
+    if (!touched || !currentBone) return;
+    if (boneSolved) { setSpeech('Una altra pregunta! ◈'); return; }
+    const correct = id === currentBone.id;
+    flashHotspot(element, correct);
+    if (correct) {
+      boneSolved = true;
+      $('#boneHintButton').disabled = true;
+      setSpeech('Molt bé! ◈');
+      setFeedback('#boneFeedback', `<strong>Exacte: ${capitalize(currentBone.label)}.</strong><p>${currentBone.explanation}</p>`, 'success');
+    } else {
+      setSpeech('Mira una altra zona');
+      setFeedback('#boneFeedback', `<strong>Has tocat ${touched.label}.</strong> ${touched.explanation} Torna a llegir la pista i prova-ho de nou.`, 'error');
+    }
+  }
+
+  function showBoneHint() {
+    if (boneSolved || !currentBone) return;
+    setFeedback('#boneFeedback', `<strong>Una pista més:</strong> ${currentBone.hint}`);
+    $('#boneHintButton').disabled = true;
+  }
+
+  function showNerveRoute(question) {
+    $('#bodyStage').dataset.nerveRoute = question?.id || '';
+    document.querySelectorAll('.nerve-route').forEach(route =>
+      route.classList.toggle('is-active', !!question && route.classList.contains(question.routeClass)));
+  }
+
+  function nextNerve() {
+    nerveIndex = (nerveIndex + 1) % nerveQuestions.length;
+    currentNerve = nerveQuestions[nerveIndex];
+    $('#nerveQuestion').textContent = currentNerve.question;
+    showNerveRoute(null);
+    setFeedback('#nerveFeedback', 'Tria un camí per veure com viatja el missatge.');
+    const parent = $('#nerveChoices');
+    parent.replaceChildren();
+    currentNerve.choices.forEach(([id, label]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'nerve-choice';
+      button.textContent = label;
+      button.dataset.choice = id;
+      button.setAttribute('aria-pressed', 'false');
+      button.addEventListener('click', () => {
+        parent.querySelectorAll('.nerve-choice').forEach(choice => {
+          const selected = choice === button;
+          choice.classList.toggle('is-active', selected);
+          choice.setAttribute('aria-pressed', String(selected));
+        });
+        const correct = id === currentNerve.correct;
+        showNerveRoute(currentNerve);
+        setFeedback('#nerveFeedback', `<strong>${correct ? 'Ben pensat!' : 'Aquest camí no porta el missatge.'}</strong><p>${currentNerve.explanation}</p>`, correct ? 'success' : 'error');
+        setSpeech(correct ? 'Missatge rebut! ⚡' : 'Segueix el camí ✦');
+      });
+      parent.append(button);
+    });
   }
 
   function showSelectedMuscles(ids) {
@@ -481,7 +581,15 @@
     parent.append(title, description);
     if (baseLayers.some(item => item.id === layer.id)) {
       const note = document.createElement('p');
-      note.textContent = layer.id === 'body' ? 'Prova de tocar diferents zones del personatge.' : layer.id === 'muscles' ? 'Les zones acolorides mostren alguns músculs importants.' : layer.id === 'circulation' ? 'Les línies mostren el circuit de manera simplificada.' : 'El cervell i el cos intercanvien senyals.';
+      const notes = {
+        body:'Prova de tocar diferents zones del personatge.',
+        muscles:'La figura mostra els músculs i el repte explica com treballen en equip.',
+        bones:'L’esquelet mostra ossos que sostenen i protegeixen el cos.',
+        circulation:'Les línies mostren el circuit de manera simplificada.',
+        nerves:'Els camins mostren com viatgen els missatges pel cos.',
+        brain:'El cervell i el cos intercanvien senyals.'
+      };
+      note.textContent = notes[layer.id];
       parent.append(note);
       return;
     }
@@ -637,17 +745,18 @@
     });
     window.addEventListener('appinstalled', () => { $('#installButton').hidden = true; deferredInstall = null; });
     if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=8', {updateViaCache:'none'}).catch(() => {}));
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js?v=9', {updateViaCache:'none'}).catch(() => {}));
     }
   }
 
   document.querySelectorAll('.nav-button').forEach(button => button.addEventListener('click', () => setMode(button.dataset.mode)));
-  document.querySelectorAll('.person-option').forEach(button => button.addEventListener('click', () => setPerson(button.dataset.person)));
+  $('#personSelect').addEventListener('change', event => setPerson(event.target.value));
   $('#turnButton').addEventListener('click', () => setView(view === 'front' ? 'back' : 'front'));
   $('#extraHintButton').addEventListener('click', showExtraHint);
-  $('#mobileExtraHintButton').addEventListener('click', showExtraHint);
   $('#nextClueButton').addEventListener('click', nextClue);
-  $('#mobileNextClueButton').addEventListener('click', nextClue);
+  $('#boneHintButton').addEventListener('click', showBoneHint);
+  $('#nextBoneButton').addEventListener('click', nextBone);
+  $('#nextNerveButton').addEventListener('click', nextNerve);
   document.querySelectorAll('.step-button').forEach(button => button.addEventListener('click', () => { muscleStep = Number(button.dataset.step); if (muscleStep === 1) setView('front'); renderMuscleStep(); }));
   $('#checkMusclesButton').addEventListener('click', checkMuscles);
   $('#bpmSlider').addEventListener('input', updateBpm);
@@ -662,5 +771,7 @@
   renderBrain();
   updateBpm();
   nextClue();
+  nextBone();
+  nextNerve();
   setupInstall();
 })();

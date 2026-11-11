@@ -1,11 +1,12 @@
-const CACHE = 'aulaia-cos-en-joc-v8';
+const CACHE = 'aulaia-cos-en-joc-v9';
 const ASSETS = [
-  './?v=8',
-  './index.html?v=8',
-  './styles.css?v=8',
-  './app.js?v=8',
+  './?v=9',
+  './index.html?v=9',
+  './styles.css?v=9',
+  './layout.css?v=9',
+  './app.js?v=9',
   './manifest.webmanifest',
-  './credits.html?v=8',
+  './credits.html?v=9',
   './icons/icon.svg',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -13,7 +14,12 @@ const ASSETS = [
   './characters/nena.webp',
   './characters/adolescent.webp',
   './characters/home.webp',
-  './characters/dona.webp'
+  './characters/dona.webp',
+  './characters/muscles/nen.webp',
+  './characters/muscles/nena.webp',
+  './characters/muscles/adolescent.webp',
+  './characters/muscles/home.webp',
+  './characters/muscles/dona.webp'
 ];
 
 self.addEventListener('install', event => {
@@ -33,6 +39,6 @@ self.addEventListener('fetch', event => {
     fetch(event.request).then(response => {
       if (!response.ok) return response;
       return caches.open(CACHE).then(cache => cache.put(event.request, response.clone())).then(() => response).catch(() => response);
-    }).catch(() => caches.match(event.request).then(cached => cached || (event.request.mode === 'navigate' ? caches.match('./index.html?v=8') : Response.error())))
+    }).catch(() => caches.match(event.request).then(cached => cached || (event.request.mode === 'navigate' ? caches.match('./index.html?v=9') : Response.error())))
   );
 });
