@@ -1,4 +1,4 @@
-const CACHE = 'aulaia-cos-en-joc-v2';
+const CACHE = 'aulaia-cos-en-joc-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -25,12 +25,9 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
   event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
-      if (response.ok) {
-        const copy = response.clone();
-        caches.open(CACHE).then(cache => cache.put(event.request, copy));
-      }
-      return response;
-    }).catch(() => event.request.mode === 'navigate' ? caches.match('./index.html') : Response.error()))
+    fetch(event.request).then(response => {
+      if (!response.ok) return response;
+      return caches.open(CACHE).then(cache => cache.put(event.request, response.clone())).then(() => response).catch(() => response);
+    }).catch(() => caches.match(event.request).then(cached => cached || (event.request.mode === 'navigate' ? caches.match('./index.html') : Response.error())))
   );
 });

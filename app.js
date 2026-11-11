@@ -607,7 +607,7 @@
   $('#mobileExtraHintButton').addEventListener('click', showExtraHint);
   $('#nextClueButton').addEventListener('click', nextClue);
   $('#mobileNextClueButton').addEventListener('click', nextClue);
-  document.querySelectorAll('.step-button').forEach(button => button.addEventListener('click', () => { muscleStep = Number(button.dataset.step); renderMuscleStep(); }));
+  document.querySelectorAll('.step-button').forEach(button => button.addEventListener('click', () => { muscleStep = Number(button.dataset.step); if (muscleStep === 1) setView('front'); renderMuscleStep(); }));
   $('#checkMusclesButton').addEventListener('click', checkMuscles);
   $('#bpmSlider').addEventListener('input', updateBpm);
   $('#checkBrainButton').addEventListener('click', checkBrain);
