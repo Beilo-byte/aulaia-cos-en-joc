@@ -37,6 +37,7 @@ h1,h2,h3,p{margin-top:0}.hero h1{font-size:clamp(34px,4vw,61px);letter-spacing:-
 .body-stage[data-layer=muscles] .clothes,.body-stage[data-layer=circulation] .clothes,.body-stage[data-layer=brain] .clothes{opacity:.13}
 .body-stage[data-layer=muscles] .circulation-overlay,.body-stage[data-layer=muscles] .brain-overlay,.body-stage[data-layer=circulation] .muscle-overlay,.body-stage[data-layer=circulation] .brain-overlay,.body-stage[data-layer=brain] .circulation-overlay,.body-stage[data-layer=brain] .muscle-overlay{display:none}
 .muscle-shape{fill:#ee795e;stroke:#b85149;stroke-width:2;opacity:.76}.muscle-trapezius{fill:#f2916f}.muscle-glutes{fill:#e96970}.muscle-forearm{fill:#f4ad66}.muscle-quads,.muscle-calves{fill:#e99169}
+.body-stage.show-muscle-answer .muscle-shape{opacity:.18}.body-stage.show-muscle-answer .muscle-shape.is-answer{opacity:1;stroke-width:3;filter:drop-shadow(0 0 5px rgba(244,125,114,.75))}
 .vessel{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;opacity:.8}.vessel-red{stroke:#ec615d}.vessel-blue{stroke:#5486c5}
 .body-stage[data-layer=circulation] .vessel{animation:vesselPulse var(--flow-duration,1.2s) ease-in-out infinite}
 @keyframes vesselPulse{0%,100%{opacity:.48;stroke-width:4}50%{opacity:1;stroke-width:6}}

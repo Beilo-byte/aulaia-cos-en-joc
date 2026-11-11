@@ -196,6 +196,7 @@
       flashHotspot(element, correct);
       if (correct) {
         clueSolved = true;
+        $('#extraHintButton').disabled = true;
         sessionScore += 1;
         $('#scorePill').textContent = `${sessionScore} ${sessionScore === 1 ? 'descoberta' : 'descobertes'}`;
         renderProgress();
@@ -259,6 +260,8 @@
 
   function renderMuscleStep() {
     const step = muscleSteps[muscleStep];
+    $('#bodyStage').classList.remove('show-muscle-answer');
+    document.querySelectorAll('.muscle-shape').forEach(shape => shape.classList.remove('is-answer'));
     $('#muscleStory').textContent = step.story;
     $('#muscleQuestion').textContent = step.question;
     document.querySelectorAll('.step-button').forEach(button => button.classList.toggle('is-active', Number(button.dataset.step) === muscleStep));
@@ -290,9 +293,14 @@
       else if (input.checked) wrapper.classList.add('is-wrong');
     });
     const exact = chosen.length === step.correct.length && chosen.every(id => step.correct.includes(id));
+    const shapeClasses = {deltoid:'muscle-deltoid', trapezius:'muscle-trapezius', serratus:'muscle-serratus', triceps:'muscle-triceps', biceps:'muscle-biceps', forearm:'muscle-forearm'};
+    document.querySelectorAll('.muscle-shape').forEach(shape => shape.classList.remove('is-answer'));
+    step.correct.forEach(id => document.querySelectorAll(`.${shapeClasses[id]}`).forEach(shape => shape.classList.add('is-answer')));
+    $('#bodyStage').classList.add('show-muscle-answer');
     const message = exact ? '<strong>Equip complet! 🎉</strong>' : '<strong>Repassem l’equip:</strong> verd = encert, groc = faltava, vermell = aquest no és principal en aquest pas.';
-    setFeedback('#muscleFeedback', `${message}<p>${step.explanation}</p>`, exact ? 'success' : 'error');
-    if (exact) setSpeech('Ben jugat! 💪');
+    const turnTip = muscleStep === 0 ? ' Gira el personatge per veure el trapezi i el tríceps a l’esquena del braç.' : '';
+    setFeedback('#muscleFeedback', `${message}<p>${step.explanation}${turnTip}</p>`, exact ? 'success' : 'error');
+    setSpeech(muscleStep === 0 ? 'Gira’m! ↺' : 'Ben jugat! 💪');
   }
 
   function updateBpm() {
